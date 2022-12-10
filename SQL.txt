@@ -1,0 +1,75 @@
+// CREATE TABLES
+
+CREATE TABLE students (
+  id BIGSERIAL PRIMARY KEY, 
+  first_name VARCHAR(255) NOT NULL, 
+  last_name VARCHAR(255) NOT NULL, 
+  dob DATE NOT NULL,
+  lesson INT,
+);
+
+CREATE TABLE teachers (
+  id BIGSERIAL PRIMARY KEY, 
+  first_name VARCHAR(255) NOT NULL, 
+  last_name VARCHAR(255) NOT NULL, 
+  FOREIGN KEY (student_id) REFERENCES students(id),
+  FOREIGN KEY (classroom_id) REFERENCES classrooms(id),
+  FOREIGN KEY (schedule_id) REFERENCES schedules(id)
+);
+
+CREATE TABLE instruments (
+  id BIGSERIAL PRIMARY KEY, 
+  type VARCHAR(255) NOT NULL 
+);
+
+CREATE TABLE classrooms (
+  id BIGSERIAL PRIMARY KEY, 
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE schedules (
+  id BIGSERIAL PRIMARY KEY,
+  date DATE,
+  start_time TIME,
+  end_time TIME,
+  FOREIGN KEY (classroom_id) REFERENCES classrooms(id),
+  FOREIGN KEY (student_id) REFERENCES students(id),
+);
+
+// ADD FOREIGN KEY RELATIONSHIPS
+
+ALTER TABLE students ADD COLUMN teacher_id INT REFERENCES teachers(id);
+
+ALTER TABLE teachers ADD COLUMN student_id INT REFERENCES students(id);
+ALTER TABLE teachers ADD COLUMN classroom_id INT REFERENCES classrooms(id);
+ALTER TABLE teachers ADD COLUMN schedule_id INT REFERENCES schedules(id);
+
+ALTER TABLE schedules ADD COLUMN classroom_id INT REFERENCES classrooms(id);
+ALTER TABLE schedules ADD COLUMN student_id INT REFERENCES students(id);
+
+
+// INSERT DATA
+
+INSERT INTO students (first_name, last_name, dob, lesson) VALUES ('Ayla', 'Inan', '2009/05/15', 30)
+
+INSERT INTO teachers (first_name, last_name) VALUES ('Alicia', 'Nguyen');
+
+INSERT INTO classrooms (name) VALUES ('Debussy');
+
+INSERT INTO schedules (date, start_time, end_time) VALUES ('2022/09/12', 8:00, 8:30)
+
+
+// UPDATE DATA
+
+UPDATE teachers SET student_id = 1 WHERE id=1;
+
+
+// JOINING TABLES
+SELECT teachers.id, teachers.first_name, teachers.last_name, students.first_name AS student_first_name, students.last_name AS student_last_name, classrooms.name AS classroom_name, schedules.date AS schedule_date, schedules.start_time AS schedule_start_time, schedules.end_time AS schedule_end_time
+FROM teachers
+INNER JOIN students
+ON teachers.student_id = students.id
+INNER JOIN classrooms
+ON teachers.classroom_id = classrooms.id
+INNER JOIN schedules
+ON teachers.schedule_id = schedules.id;
