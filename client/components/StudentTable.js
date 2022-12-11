@@ -1,59 +1,15 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function StudentTable() {
-  const [students, setStudents] = useState([]);
-
-  // Fetching data on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/students');
-        const data = await response.json();
-        setStudents(data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchData();
-  }, [JSON.stringify(students)])
-
-  // Handling the POST request after form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const firstName = formData.get('first_name');
-    const lastName = formData.get('last_name');
-    const dob = formData.get('dob');
-    const lesson = formData.get('lesson');
-    const studentData = {
-      first_name: firstName,
-      last_name: lastName,
-      dob: dob,
-      lesson: lesson
-    }
-    const jsonData = JSON.stringify(studentData);
-    try {
-      const response = await fetch('/api/students', {
-        method: 'POST',
-        body: jsonData
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setStudents([...students, data]);
-      } else {
-        console.error(response.statusText);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  const { students, teachers, classrooms, schedules, handleStudentSubmit } = useContext(DataContext);
 
   return (
     <>
       {students ?
         <div className='selection students active'>
-          <form method='post' action='/api/students' onSubmit={handleSubmit} className='form'>
+          <form method='post' action='/api/students' onSubmit={handleStudentSubmit} className='form'>
             <input type='text' placeholder="First Name" name='first_name' required />
             <input type='text' placeholder="Last Name" name='last_name' required />
             <input type='text' placeholder="DOB" name='dob' required />

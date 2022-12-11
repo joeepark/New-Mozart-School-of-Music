@@ -1,60 +1,39 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react"
+import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function ScheduleTable() {
-  const [schedules, setSchedules] = useState([]);
-
-  // Fetching data on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/schedules');
-        const data = await response.json();
-        setSchedules(data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchData();
-  }, [JSON.stringify(schedules)])
-
-  // Handling the POST request after form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const date = formData.get('date');
-    const startTime = formData.get('start_time');
-    const endTime = formData.get('end_time');
-    const scheduleData = {
-      date: date,
-      start_time: startTime,
-      end_time: endTime,
-    }
-    const jsonData = JSON.stringify(scheduleData);
-    try {
-      const response = await fetch('/api/schedules', {
-        method: 'POST',
-        body: jsonData
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setSchedules([...schedules, data]);
-      } else {
-        console.error(response.statusText);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  const { students, teachers, classrooms, schedules, handleScheduleSubmit } = useContext(DataContext);
 
   return (
     <>
       {schedules ?
         <div className='selection schedules'>
-          <form method='post' action='/api/schedules' onSubmit={handleSubmit} className='form' >
+          <form method='post' action='/api/schedules /api/classrooms' onSubmit={handleScheduleSubmit} className='form' >
             <input type='text' placeholder="Date" name='date' required />
             <input type='text' placeholder="Start Time" name='start_time' required />
             <input type='text' placeholder="End Time" name='end_time' required />
+            <select name='student_id'>
+              {students.map((student => {
+                return (
+                  <option value={student.id} key={student.id}>{student.first_name} {student.last_name}</option>
+                );
+              }))}
+            </select>
+            <select name='teacher_id'>
+              {teachers.map((teacher => {
+                return (
+                  <option value={teacher.id} key={teacher.id}>{teacher.first_name} {teacher.last_name}</option>
+                );
+              }))}
+            </select>
+            <select name='classroom_id'>
+              {classrooms.map((classroom => {
+                return (
+                  <option value={classroom.id} key={classroom.id}>{classroom.name}</option>
+                );
+              }))}
+            </select>
             <button type="submit">Add Schedule</button>
           </form >
           <div className='table'>
@@ -64,6 +43,9 @@ function ScheduleTable() {
                   <th>Date</th>
                   <th>Start Time</th>
                   <th>End Time</th>
+                  <th>Student</th>
+                  <th>Teacher</th>
+                  <th>Classroom</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,6 +73,15 @@ function Row({ schedule }) {
         </td>
         <td>
           {schedule.end_time}
+        </td>
+        <td>
+          {schedule.student_first_name} {schedule.student_last_name}
+        </td>
+        <td>
+          {schedule.teacher_first_name} {schedule.teacher_last_name}
+        </td>
+        <td>
+          {schedule.classroom_name}
         </td>
       </tr>
     </>

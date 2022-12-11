@@ -1,53 +1,30 @@
-import { useState, useEffect } from "react"
+import { useContext, useState } from "react";
+import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function ClassroomTable() {
-  const [classrooms, setClassrooms] = useState([]);
+  const { students, teachers, classrooms, schedules, handleClassroomSubmit } = useContext(DataContext);
+  const [selectedClassroom, setSelectedClassroom] = useState('');
 
-  // Fetching data on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/classrooms');
-        const data = await response.json();
-        setClassrooms(data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchData();
-  }, [JSON.stringify(classrooms)])
+  const roomFiltered = [...new Map(classrooms.map((m) => [m.name, m])).values()];
 
-  // Handling the POST request after form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const name = formData.get('name');
-    const classroomData = {
-      name: name
-    }
-    const jsonData = JSON.stringify(classroomData);
-    try {
-      const response = await fetch('/api/classrooms', {
-        method: 'POST',
-        body: jsonData
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setClassrooms([...classrooms, data]);
-      } else {
-        console.error(response.statusText);
-      }
-    } catch (err) {
-      console.error(err);
-    }
+  const handleClick = (event) => {
+    setSelectedClassroom(event.target.value);
   }
 
   return (
     <>
       {classrooms ?
         <div className='selection classrooms'>
-          <form method='post' action='/api/classrooms' onSubmit={handleSubmit} className='form' >
+          <form method='post' action='/api/classrooms' onSubmit={handleClassroomSubmit} className='form' >
+            <select onClick={handleClick}>
+              <option>-- Pick a room --</option>
+              {roomFiltered.map(room => {
+                return (
+                  <option value={room.name} key={room.id}>{room.name}</option>
+                )
+              })}
+            </select>
             <input type='text' placeholder="Name" name='name' required />
             <button type="submit">Add Classroom</button>
           </form >
@@ -56,11 +33,16 @@ function ClassroomTable() {
               <thead>
                 <tr>
                   <th>Name</th>
+                  <th>Date</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Student</th>
+                  <th>Teacher</th>
                 </tr>
               </thead>
               <tbody>
                 {classrooms && classrooms.map((classroom, index) => (
-                  <Row classroom={classroom} key={index} />))}
+                  <Row classroom={classroom} selectedClassroom={selectedClassroom} key={index} />))}
               </tbody>
             </table>
           </div>
@@ -71,16 +53,35 @@ function ClassroomTable() {
 }
 
 // Data per row for each teacher
-function Row({ classroom }) {
-  return (
-    <>
-      <tr className='rows'>
-        <td>
-          {classroom.name}
-        </td>
-      </tr>
-    </>
-  )
+function Row({ classroom, selectedClassroom }) {
+  if (selectedClassroom === classroom.name) {
+    return (
+      <>
+        <tr className='rows'>
+          <td>
+            {classroom.name}
+          </td>
+          <td>
+            {classroom && classroom.schedule_date.slice(0, 10)}
+          </td>
+          <td>
+            {classroom.schedule_start_time}
+          </td>
+          <td>
+            {classroom.schedule_end_time}
+          </td>
+          <td>
+            {classroom.student_first_name} {classroom.student_last_name}
+          </td>
+          <td>
+            {classroom.teacher_first_name} {classroom.teacher_last_name}
+          </td>
+        </tr>
+      </>
+    )
+  } else {
+    return;
+  }
 }
 
 
