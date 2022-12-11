@@ -13,10 +13,10 @@ function Nav() {
     <>
         <h1 className='header'>New Mozart School of Music</h1>
       <select className='dropdown' onClick={handleClick}>
-        <option value='students'>Students</option>
-        <option value='teachers'>Teachers</option>
         <option value='schedules'>Schedules</option>
         <option value='classrooms'>Classrooms</option>
+        <option value='students'>Students</option>
+        <option value='teachers'>Teachers</option>
       </select>
     </>
   )

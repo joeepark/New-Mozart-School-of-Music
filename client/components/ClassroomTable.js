@@ -3,7 +3,7 @@ import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function ClassroomTable() {
-  const { students, teachers, classrooms, schedules, handleClassroomSubmit } = useContext(DataContext);
+  const { classrooms, handleClassroomSubmit } = useContext(DataContext);
   const [selectedClassroom, setSelectedClassroom] = useState('');
 
   const roomFiltered = [...new Map(classrooms.map((m) => [m.name, m])).values()];

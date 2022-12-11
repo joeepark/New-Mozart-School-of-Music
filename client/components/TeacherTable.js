@@ -3,7 +3,7 @@ import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function TeacherTable() {
-  const { students, teachers, classrooms, schedules, handleTeacherSubmit } = useContext(DataContext);
+  const { teachers, handleTeacherSubmit } = useContext(DataContext);
 
   return (
     <>

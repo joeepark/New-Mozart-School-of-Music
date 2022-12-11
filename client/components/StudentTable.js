@@ -3,12 +3,12 @@ import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function StudentTable() {
-  const { students, teachers, classrooms, schedules, handleStudentSubmit } = useContext(DataContext);
+  const { students, handleStudentSubmit } = useContext(DataContext);
 
   return (
     <>
       {students ?
-        <div className='selection students active'>
+        <div className='selection students'>
           <form method='post' action='/api/students' onSubmit={handleStudentSubmit} className='form'>
             <input type='text' placeholder="First Name" name='first_name' required />
             <input type='text' placeholder="Last Name" name='last_name' required />

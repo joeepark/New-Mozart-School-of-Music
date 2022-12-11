@@ -5,32 +5,34 @@ import Loading from "./Loading";
 function ScheduleTable() {
   const { students, teachers, classrooms, schedules, handleScheduleSubmit } = useContext(DataContext);
 
+  const roomFiltered = [...new Map(classrooms.map((m) => [m.name, m])).values()];
+
   return (
     <>
       {schedules ?
-        <div className='selection schedules'>
+        <div className='selection schedules active'>
           <form method='post' action='/api/schedules /api/classrooms' onSubmit={handleScheduleSubmit} className='form' >
             <input type='text' placeholder="Date" name='date' required />
             <input type='text' placeholder="Start Time" name='start_time' required />
             <input type='text' placeholder="End Time" name='end_time' required />
             <select name='student_id'>
-              {students.map((student => {
+              {students.map(((student, index) => {
                 return (
-                  <option value={student.id} key={student.id}>{student.first_name} {student.last_name}</option>
+                  <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>
                 );
               }))}
             </select>
             <select name='teacher_id'>
-              {teachers.map((teacher => {
+              {teachers.map(((teacher, index) => {
                 return (
-                  <option value={teacher.id} key={teacher.id}>{teacher.first_name} {teacher.last_name}</option>
+                  <option value={teacher.id} key={index}>{teacher.first_name} {teacher.last_name}</option>
                 );
               }))}
             </select>
             <select name='classroom_id'>
-              {classrooms.map((classroom => {
+              {roomFiltered.map(((classroom, index) => {
                 return (
-                  <option value={classroom.id} key={classroom.id}>{classroom.name}</option>
+                  <option value={classroom.id} key={index}>{classroom.name}</option>
                 );
               }))}
             </select>
