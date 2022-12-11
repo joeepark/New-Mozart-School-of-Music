@@ -4,7 +4,7 @@ async function students(req, res) {
   try {
     if (req.method === 'GET') {
       return getStudents(req, res);
-    } if (req.method === 'POST') {
+    } else if (req.method === 'POST') {
       return addStudent(req, res);
     }
   } catch (err) {

@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import ClassroomTable from '../client/components/ClassroomTable'
 import Nav from '../client/components/Nav'
+import ScheduleTable from '../client/components/ScheduleTable'
 import StudentTable from '../client/components/StudentTable'
 import TeacherTable from '../client/components/TeacherTable'
 
@@ -14,6 +16,8 @@ export default function Home() {
       <Nav />
       <StudentTable />
       <TeacherTable />
+      <ScheduleTable />
+      <ClassroomTable />
     </>
   )
 }

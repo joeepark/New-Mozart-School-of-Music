@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import Link from 'next/link';
-
 function Nav() {
   const handleClick = (event) => {
     resetActive();
