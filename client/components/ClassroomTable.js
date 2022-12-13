@@ -19,9 +19,9 @@ function ClassroomTable() {
           <form method='post' action='/api/classrooms' onSubmit={handleClassroomSubmit} className='form' >
             <select onClick={handleClick}>
               <option>-- Pick a room --</option>
-              {roomFiltered.map(room => {
+              {roomFiltered.map((room, index) => {
                 return (
-                  <option value={room.name} key={room.id}>{room.name}</option>
+                  <option value={room.name} key={index}>{room.name}</option>
                 )
               })}
             </select>

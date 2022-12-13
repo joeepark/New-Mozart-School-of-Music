@@ -13,25 +13,31 @@ async function teachers(req, res) {
 }
 
 async function getTeachers(req, res) {
+  const client = await pool.connect();
   try {
     const query = 'SELECT * FROM "public"."teachers"';
-    const response = await pool.query(query);
+    const response = await client.query(query);
     return res.status(200).json(response.rows);
   } catch (err) {
     return res.status(500).json({ error: err.message });
+  } finally {
+    await client.release();
   }
 }
 
 async function addTeacher(req, res) {
+  const client = await pool.connect();
   try {
     const jsonData = req.body;
     const teacherData = JSON.parse(jsonData);
-    const { first_name, last_name, dob, lesson } = teacherData;
+    const { first_name, last_name } = teacherData;
     const query = 'INSERT INTO teachers (first_name, last_name) VALUES ($1, $2)';
-    const response = await pool.query(query, [first_name, last_name]);
+    const response = await client.query(query, [first_name, last_name]);
     return res.status(200).json(response.rows);
   } catch (err) {
     return res.status(500).json({ error: err.message });
+  } finally {
+    await client.release();
   }
 }
 

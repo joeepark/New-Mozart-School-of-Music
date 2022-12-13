@@ -28,7 +28,7 @@ export const DataProvider = ({ children }) => {
       }
     }
     fetchData();
-  }, [JSON.stringify(schedules), JSON.stringify(teachers), JSON.stringify(classrooms), JSON.stringify(students)])
+  }, [JSON.stringify(students), JSON.stringify(teachers), JSON.stringify(classrooms), JSON.stringify(schedules)])
 
   const handleScheduleSubmit = async (event) => {
     event.preventDefault();
@@ -123,11 +123,14 @@ export const DataProvider = ({ children }) => {
     const lastName = formData.get('last_name');
     const dob = formData.get('dob');
     const lesson = formData.get('lesson');
+    const teacherId = formData.get('teacher_id');
+
     const studentData = {
       first_name: firstName,
       last_name: lastName,
       dob: dob,
-      lesson: lesson
+      lesson: lesson,
+      teacher_id: teacherId
     }
     const jsonData = JSON.stringify(studentData);
     try {

@@ -10,7 +10,7 @@ function Nav() {
     all.forEach(element => element.classList.remove('active'));
   }
   return (
-    <>
+    <div className="nav">
         <h1 className='header'>New Mozart School of Music</h1>
       <select className='dropdown' onClick={handleClick}>
         <option value='schedules'>Schedules</option>
@@ -18,7 +18,7 @@ function Nav() {
         <option value='students'>Students</option>
         <option value='teachers'>Teachers</option>
       </select>
-    </>
+    </div>
   )
 }
 

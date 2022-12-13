@@ -3,7 +3,7 @@ import DataContext from "../context/DataContext";
 import Loading from "./Loading";
 
 function StudentTable() {
-  const { students, handleStudentSubmit } = useContext(DataContext);
+  const { students, teachers, handleStudentSubmit } = useContext(DataContext);
 
   return (
     <>
@@ -14,6 +14,13 @@ function StudentTable() {
             <input type='text' placeholder="Last Name" name='last_name' required />
             <input type='text' placeholder="DOB" name='dob' required />
             <input type='text' placeholder="Lesson" name='lesson' required />
+            <select name='teacher_id'>
+              {teachers.map(((teacher, index) => {
+                return (
+                  <option value={teacher.id} key={index}>{teacher.first_name} {teacher.last_name}</option>
+                );
+              }))}
+            </select>
             <button type="submit">Add Student</button>
           </form>
           <div className='table'>

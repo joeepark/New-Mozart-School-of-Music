@@ -37,6 +37,10 @@ body {
   display: none;
 }
 
+.nav select{
+  margin-top: 1em;
+}
+
 /* table styling */
 
 .table {
