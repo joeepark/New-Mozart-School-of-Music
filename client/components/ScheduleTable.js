@@ -10,7 +10,7 @@ function ScheduleTable() {
   return (
     <>
       {schedules ?
-        <div className='selection schedules active'>
+        <div className='selection schedules container active'>
           <form method='post' action='/api/schedules /api/classrooms' onSubmit={handleScheduleSubmit} className='form' >
             <input type='text' placeholder="Date" name='date' required />
             <input type='text' placeholder="Start Time" name='start_time' required />
@@ -84,6 +84,10 @@ function Row({ schedule }) {
         </td>
         <td>
           {schedule.classroom_name}
+        </td>
+        <td className="edit-btn">
+          <a className="update-btn">🖊️</a>
+          <a className="delete-btn">❌</a>
         </td>
       </tr>
     </>

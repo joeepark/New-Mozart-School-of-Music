@@ -8,7 +8,7 @@ function StudentTable() {
   return (
     <>
       {students ?
-        <div className='selection students'>
+        <div className='selection container students'>
           <form method='post' action='/api/students' onSubmit={handleStudentSubmit} className='form'>
             <input type='text' placeholder="First Name" name='first_name' required />
             <input type='text' placeholder="Last Name" name='last_name' required />
@@ -60,6 +60,10 @@ function Row({ student }) {
         </td>
         <td>
           {student.lesson}
+        </td>
+        <td className="edit-btn">
+          <a className="update-btn">🖊️</a>
+          <a className="delete-btn">❌</a>
         </td>
       </tr>
     </>

@@ -7,7 +7,7 @@
 }
 
 :root {
-  --clr-primary: rgb(196, 196, 196);
+  --clr-primary: #ced4da;
   --clr-neutral: white;
 }
 
@@ -15,14 +15,11 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   text-align: center;
-  width: 90%;
-  margin: 0 auto;
+  background-color: #f8f9fa;
 }
 
 .header {
-  padding-top: 1em;
   font-size: 2rem;
-  font-weight: 900;
 }
 
 .form {
@@ -37,8 +34,53 @@ body {
   display: none;
 }
 
-.nav select{
-  margin-top: 1em;
+.container {
+  padding: 1.5em 3em;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.nav {
+  background-color: #4a4e69;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.nav select {
+  padding: .5em 1em;
+  border-radius: 1.5em;
+  border: none;
+  background-color: #f8f9fa;
+}
+
+.selection input {
+  padding: .5em 1em;
+  border: 1px solid black;
+  background-color: #f8f9fa
+}
+
+.selection select {
+  padding: .5em 1em;
+  background-color: #f8f9fa;
+  border: 1px solid black;
+}
+
+.selection button {
+  padding: .5em 1em;
+  border: 1px solid black;
+}
+
+.edit-btn {
+  cursor: pointer;
+}
+
+.update-btn {
+  margin-right: .5em;
 }
 
 /* table styling */

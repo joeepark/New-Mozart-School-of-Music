@@ -15,7 +15,7 @@ function ClassroomTable() {
   return (
     <>
       {classrooms ?
-        <div className='selection classrooms'>
+        <div className='selection classrooms container'>
           <form method='post' action='/api/classrooms' onSubmit={handleClassroomSubmit} className='form' >
             <select onClick={handleClick}>
               <option>-- Pick a room --</option>
@@ -75,6 +75,10 @@ function Row({ classroom, selectedClassroom }) {
           </td>
           <td>
             {classroom.teacher_first_name} {classroom.teacher_last_name}
+          </td>
+          <td className="edit-btn">
+            <a className="update-btn">🖊️</a>
+            <a className="delete-btn">❌</a>
           </td>
         </tr>
       </>

@@ -8,7 +8,7 @@ function TeacherTable() {
   return (
     <>
       {teachers ?
-        <div className='selection teachers'>
+        <div className='selection container teachers'>
           < form method='post' action='/api/teachers' onSubmit={handleTeacherSubmit} className='form' >
             <input type='text' placeholder="First Name" name='first_name' required />
             <input type='text' placeholder="Last Name" name='last_name' required />
@@ -44,6 +44,10 @@ function Row({ teacher }) {
         </td>
         <td>
           {teacher.last_name}
+        </td>
+        <td className="edit-btn">
+          <a className="update-btn">🖊️</a>
+          <a className="delete-btn">❌</a>
         </td>
       </tr>
     </>

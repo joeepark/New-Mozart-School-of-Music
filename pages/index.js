@@ -13,11 +13,11 @@ export default function Home() {
         <meta name="description" content="music school for aspiring musicians" />
         <link rel="icon" href="" />
       </Head>
-      <Nav />
-      <StudentTable />
-      <TeacherTable />
-      <ScheduleTable />
-      <ClassroomTable />
+        <Nav />
+        <StudentTable />
+        <TeacherTable />
+        <ScheduleTable />
+        <ClassroomTable />
     </>
   )
 }

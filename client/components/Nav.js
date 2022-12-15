@@ -9,16 +9,19 @@ function Nav() {
     const all = document.querySelectorAll('.active');
     all.forEach(element => element.classList.remove('active'));
   }
+
   return (
-    <div className="nav">
+    <nav className="nav">
+      <div className="container nav-container">
         <h1 className='header'>New Mozart School of Music</h1>
-      <select className='dropdown' onClick={handleClick}>
-        <option value='schedules'>Schedules</option>
-        <option value='classrooms'>Classrooms</option>
-        <option value='students'>Students</option>
-        <option value='teachers'>Teachers</option>
-      </select>
-    </div>
+        <select className='dropdown' onClick={handleClick}>
+          <option value='schedules'>Schedules</option>
+          <option value='classrooms'>Classrooms</option>
+          <option value='students'>Students</option>
+          <option value='teachers'>Teachers</option>
+        </select>
+      </div>
+    </nav>
   )
 }
 
