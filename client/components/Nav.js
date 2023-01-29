@@ -1,9 +1,12 @@
+import logo from '/assets/logo.png';
+import Image from 'next/image';
+
 function Nav() {
   const handleClick = (event) => {
-    resetActive();
-    const select = document.querySelector(`.${event.target.value}`);
-    select.classList.toggle('active');
+    let hamMenu = document.querySelector(".hamburger-container");
+    hamMenu.classList.toggle("active");
   }
+
 
   const resetActive = () => {
     const all = document.querySelectorAll('.active');
@@ -11,17 +14,24 @@ function Nav() {
   }
 
   return (
-    <nav className="nav">
+    <div className="nav">
       <div className="container nav-container">
-        <h1 className='header'>New Mozart School of Music</h1>
-        <select className='dropdown' onClick={handleClick}>
+        <Image src={logo} width={100} height={100} alt="logo" />
+        <div class="hamburger-container" onClick={handleClick}>
+          <div class="menu">
+            <span class="line one"></span>
+            <span class="line two"></span>
+            <span class="line three"></span>
+          </div>
+        </div>
+        {/* <select className='dropdown' onClick={handleClick}>
           <option value='schedules'>Schedules</option>
           <option value='classrooms'>Classrooms</option>
           <option value='students'>Students</option>
           <option value='teachers'>Teachers</option>
-        </select>
+        </select> */}
       </div>
-    </nav>
+    </div>
   )
 }
 

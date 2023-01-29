@@ -8,27 +8,27 @@ export const DataProvider = ({ children }) => {
   const [classrooms, setClassrooms] = useState([]);
   const [schedules, setSchedules] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = (await Promise.all([
-          fetch('/api/students'),
-          fetch('/api/teachers'),
-          fetch('/api/classrooms'),
-          fetch('/api/schedules'),
-        ])
-        ).map(res => res.json());
-        const [students, teachers, classrooms, schedules] = await Promise.all(response);
-        setStudents(students);
-        setTeachers(teachers);
-        setClassrooms(classrooms);
-        setSchedules(schedules);
-      } catch (err) {
-        console.error({ error: err.message });
-      }
-    }
-    fetchData();
-  }, [JSON.stringify(students), JSON.stringify(teachers), JSON.stringify(classrooms), JSON.stringify(schedules)])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = (await Promise.all([
+  //         fetch('/api/students'),
+  //         fetch('/api/teachers'),
+  //         fetch('/api/classrooms'),
+  //         fetch('/api/schedules'),
+  //       ])
+  //       ).map(res => res.json());
+  //       const [students, teachers, classrooms, schedules] = await Promise.all(response);
+  //       setStudents(students);
+  //       setTeachers(teachers);
+  //       setClassrooms(classrooms);
+  //       setSchedules(schedules);
+  //     } catch (err) {
+  //       console.error({ error: err.message });
+  //     }
+  //   }
+  //   fetchData();
+  // }, [JSON.stringify(students), JSON.stringify(teachers), JSON.stringify(classrooms), JSON.stringify(schedules)])
 
   const handleScheduleSubmit = async (event) => {
     event.preventDefault();
@@ -122,15 +122,15 @@ export const DataProvider = ({ children }) => {
     const firstName = formData.get('first_name');
     const lastName = formData.get('last_name');
     const dob = formData.get('dob');
-    const lesson = formData.get('lesson');
-    const teacherId = formData.get('teacher_id');
+    // const lesson = formData.get('lesson');
+    // const teacherId = formData.get('teacher_id');
 
     const studentData = {
       first_name: firstName,
       last_name: lastName,
       dob: dob,
-      lesson: lesson,
-      teacher_id: teacherId
+      // lesson: lesson,
+      // teacher_id: teacherId
     }
     const jsonData = JSON.stringify(studentData);
     try {
