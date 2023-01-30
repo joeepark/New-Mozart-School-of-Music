@@ -8,6 +8,19 @@ function AddPerson() {
     <section className="add-container">
       <h3>Registration Form</h3>
       <form method='post' action='/api/students' className="form flex">
+      <div class="person-type-container">
+          <div class="person-type flex">
+            <div class="person">
+              <input type="radio" id="check-student" name="person" checked />
+              <label for="check-student">Student</label>
+            </div>
+            <div class="person">
+              <input type="radio" id="check-teacher" name="person" />
+              <label for="check-teacher">Teacher</label>
+            </div>
+          </div>
+        </div>
+
         <div className="column">
           <div className="input-box">
             <label>Student's First Name</label>
@@ -45,35 +58,9 @@ function AddPerson() {
             <input type="date" placeholder="Enter birth date" name='dob'  />
           </div>
         </div>
-        {/* <div class="gender-box">
-          <h3>Gender</h3>
-          <div class="gender-option">
-            <div class="gender">
-              <input type="radio" id="check-male" name="gender" checked />
-              <label for="check-male">male</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-female" name="gender" />
-              <label for="check-female">Female</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-other" name="gender" />
-              <label for="check-other">prefer not to say</label>
-            </div>
-          </div>
-        </div> */}
         <div className="input-box address">
           <label>Address</label>
           <div className="column">
-            {/* <div class="select-box">
-              <select>
-                <option hidden>Country</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>India</option>
-                <option>Nepal</option>
-              </select>
-            </div> */}
             <input type="text" placeholder="Enter street address"  />
             <input type="text" placeholder="Enter city"  />
           </div>

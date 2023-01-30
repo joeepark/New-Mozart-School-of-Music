@@ -10,12 +10,12 @@ function ScheduleTable() {
   return (
     <>
       {schedules ?
-        <div className='selection schedules container active'>
+        <div className='selection schedules container'>
           <form method='post' action='/api/schedules /api/classrooms' onSubmit={handleScheduleSubmit} className='form' >
-            <input type='text' placeholder="Date" name='date' required />
+            {/* <input type='text' placeholder="Date" name='date' required />
             <input type='text' placeholder="Start Time" name='start_time' required />
-            <input type='text' placeholder="End Time" name='end_time' required />
-            <select name='student_id'>
+            <input type='text' placeholder="End Time" name='end_time' required /> */}
+            {/* <select name='student_id'>
               {students.map(((student, index) => {
                 return (
                   <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>
@@ -35,8 +35,8 @@ function ScheduleTable() {
                   <option value={classroom.id} key={index}>{classroom.name}</option>
                 );
               }))}
-            </select>
-            <button type="submit">Add Schedule</button>
+            </select> */}
+            {/* <button type="submit">Add Schedule</button> */}
           </form >
           <div className='table'>
             <table>

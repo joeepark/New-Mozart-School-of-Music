@@ -15,8 +15,8 @@ body {
   font-family: 'Caladea', serif;
   font-weight: 400;
   text-align: center;
-  background-color: rgb(130, 106, 251);
-  color: white;
+  background-color: #f5ebe0;
+  color: #1d3557;
 }
 
 /* utility classes */
@@ -34,6 +34,9 @@ body {
   margin: 0 auto;
 }
 
+section {
+  margin: 0 1em;
+}
 
 /* nav-bar */
 .nav-container {
@@ -55,8 +58,8 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 6px;
-  background-color: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  background-color: #edede9;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -190,6 +193,17 @@ body {
   background-color: var(--clr-neutral);
 }
 
+.table-selection {
+  margin: 4em auto -2em;
+  padding-left: 1em;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.table-person label {
+  margin-left: .3em;
+}
+
 /* icons */
 .icons {
   margin-top: 13rem;
@@ -227,6 +241,19 @@ body {
 
 .add-container h3 {
   font-size: 1.8rem;
+}
+
+.person-type-container {
+  width: 100%;
+}
+
+.person-type {
+  justify-content: flex-start;
+  gap: .5em;
+}
+
+.person label {
+  margin-left: .2em;
 }
 
 .form {

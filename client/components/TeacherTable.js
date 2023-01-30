@@ -10,9 +10,9 @@ function TeacherTable() {
       {teachers ?
         <div className='selection container teachers'>
           < form method='post' action='/api/teachers' onSubmit={handleTeacherSubmit} className='form' >
-            <input type='text' placeholder="First Name" name='first_name' required />
+            {/* <input type='text' placeholder="First Name" name='first_name' required />
             <input type='text' placeholder="Last Name" name='last_name' required />
-            <button type="submit">Add Teacher</button>
+            <button type="submit">Add Teacher</button> */}
           </form >
           <div className='table'>
             <table>

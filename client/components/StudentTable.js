@@ -10,7 +10,7 @@ function StudentTable() {
       {students ?
         <div className='selection container students'>
           <form method='post' action='/api/students' onSubmit={handleStudentSubmit} className='form'>
-            <input type='text' placeholder="First Name" name='first_name' required />
+            {/* <input type='text' placeholder="First Name" name='first_name' required />
             <input type='text' placeholder="Last Name" name='last_name' required />
             <input type='text' placeholder="DOB" name='dob' required />
             <input type='text' placeholder="Lesson" name='lesson' required />
@@ -21,7 +21,7 @@ function StudentTable() {
                 );
               }))}
             </select>
-            <button type="submit">Add Student</button>
+            <button type="submit">Add Student</button> */}
           </form>
           <div className='table'>
             <table>
