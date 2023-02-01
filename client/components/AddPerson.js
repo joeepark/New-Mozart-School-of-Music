@@ -8,15 +8,15 @@ function AddPerson() {
     <section className="add-container">
       <h3>Registration Form</h3>
       <form method='post' action='/api/students' className="form flex">
-      <div class="person-type-container">
-          <div class="person-type flex">
-            <div class="person">
-              <input type="radio" id="check-student" name="person" checked />
-              <label for="check-student">Student</label>
+      <div className="person-type-container">
+          <div className="person-type flex">
+            <div className="person">
+              <input type="radio" id="check-student" name="person" defaultChecked />
+              <label htmlFor="check-student">Student</label>
             </div>
-            <div class="person">
+            <div className="person">
               <input type="radio" id="check-teacher" name="person" />
-              <label for="check-teacher">Teacher</label>
+              <label htmlFor="check-teacher">Teacher</label>
             </div>
           </div>
         </div>

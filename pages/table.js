@@ -19,17 +19,17 @@ function tables() {
     <>
       <div className="table-selection flex container">
         <h4>View:</h4>
-        <div className="table-person">
+        <div className="table-person flex">
           <input type="radio" value="schedules" id="check-schedule" name="table-person" onClick={handleClick} />
-          <label for="check-schedule">Schedules</label>
+          <label htmlFor="check-schedule">Schedules</label>
         </div>
-        <div className="table-person">
+        <div className="table-person flex">
           <input type="radio" value="students" id="check-student" name="table-person" onClick={handleClick} />
-          <label for="check-student">Students</label>
+          <label htmlFor="check-student">Students</label>
         </div>
-        <div className="table-person">
+        <div className="table-person flex">
           <input type="radio" value="teachers" id="check-teacher" name="table-person" onClick={handleClick} />
-          <label for="check-teacher">Teachers</label>
+          <label htmlFor="check-teacher">Teachers</label>
         </div>
       </div>
       <StudentTable />

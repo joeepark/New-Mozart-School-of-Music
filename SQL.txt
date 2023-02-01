@@ -92,3 +92,6 @@ INNER JOIN teachers
 ON classrooms.teacher_id= teachers.id
 INNER JOIN schedules
 ON classrooms.schedule_id = schedules.id;
+
+// View specific data
+SELECT * FROM schedules WHERE teacher_id = 42;

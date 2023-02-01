@@ -13,11 +13,11 @@ function Nav() {
         <Link href='/'>
           <Image src={logo} width={100} height={100} alt="logo" />
         </Link>
-        <div class="hamburger-container" onClick={handleClick}>
-          <div class="menu">
-            <span class="line one"></span>
-            <span class="line two"></span>
-            <span class="line three"></span>
+        <div className="hamburger-container" onClick={handleClick}>
+          <div className="menu">
+            <span className="line one"></span>
+            <span className="line two"></span>
+            <span className="line three"></span>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ function Homepage() {
         <button onClick={handleClick}>
           <Image src={create} width={150} height={150} alt="add icon" />
         </button>
-        <h2>Add Person</h2>
+        <h2>Add Student/Teacher</h2>
       </div>
       <div>
         <button>
@@ -31,12 +31,14 @@ function Homepage() {
             <Image src={menu} width={150} height={150} alt="add icon" />
           </button>
         </Link>
-        <h2>View Table</h2>
+        <h2>Show all students/teachers/rooms</h2>
       </div>
       <div>
-        <button>
-          <Image src={calendar} width={150} height={150} alt="add icon" />
-        </button>
+        <Link href="/calendar">
+          <button>
+            <Image src={calendar} width={150} height={150} alt="add icon" />
+          </button>
+        </Link>
         <h2>View Calendar</h2>
       </div>
     </div>
