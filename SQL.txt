@@ -58,7 +58,7 @@ INSERT INTO teachers (first_name, last_name) VALUES ('Alicia', 'Nguyen');
 
 INSERT INTO classrooms (name) VALUES ('Debussy');
 
-INSERT INTO schedules (date, start_time, end_time) VALUES ('2022/09/12', 8:00, 8:30)
+INSERT INTO schedules (date, start_time, end_time, classroom_id, student_id, teacher_id) VALUES ('2022/09/12', '8:00', '8:30', '10', '52', '42')
 
 
 // UPDATE DATA
