@@ -368,6 +368,45 @@ input[type=number] {
 
 
 /* Calendar */
+.calendar {
+  width: 90%;
+  margin: 5em auto;
+  background-color: rgb(255, 255, 255);
+  font-size: 1rem;
+}
+
+.rbc-btn-group>button {
+  font-family: 'Caladea', sans-serif;
+  font-size: 1rem;
+}
+
+.rbc-toolbar-label {
+  font-size: 1.5rem;
+}
+
+.rbc-calendar {
+  border: 2px solid rgb(199, 199, 199);
+  padding: 2.5em;
+}
+
+
+.rbc-event.rbc-event-allday {
+  background-color: rgb(204, 11, 185);
+  border-radius: 1em;
+}
+
+.rbc-day-bg.rbc-today {
+  background-color: rgba(49, 204, 232, 0.505);
+}
+.rbc-day-slot.rbc-time-column.rbc-now.rbc-today {
+  background-color: rgba(49, 204, 232, 0.505);
+}
+.rbc-header.rbc-today {
+  background-color: rgba(49, 204, 232, 0.505);
+}
+
+/* class="rbc-event rbc-selected rbc-event-allday" */
+
 /* .calendar-container {
   padding: 1em 1em;
   background: #fff;
@@ -544,7 +583,7 @@ header .current-date {
 } */
 
 /* Calendar */
-.cld-main {
+/* .cld-main {
   width: 660px;
 }
 
@@ -659,4 +698,4 @@ header .current-date {
   background: #eee;
 }
 
-.today .cld-number.eventday:hover {}
+.today .cld-number.eventday:hover {} */

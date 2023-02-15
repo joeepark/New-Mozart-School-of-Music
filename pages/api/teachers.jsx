@@ -1,10 +1,11 @@
-import pool from '../../server/model'
+import pool from '../../server/model';
 
 async function teachers(req, res) {
   try {
     if (req.method === 'GET') {
       return getTeachers(req, res);
-    } if (req.method === 'POST') {
+    }
+    if (req.method === 'POST') {
       return addTeacher(req, res);
     }
   } catch (err) {

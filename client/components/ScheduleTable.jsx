@@ -1,17 +1,23 @@
-import { useContext } from "react"
-import DataContext from "../context/DataContext";
-import Loading from "./Loading";
+import { useContext } from 'react';
+import DataContext from '../context/DataContext';
+import Loading from './Loading';
 
 function ScheduleTable() {
-  const { students, teachers, classrooms, schedules, handleScheduleSubmit } = useContext(DataContext);
+  const { classrooms, schedules, handleScheduleSubmit } =
+    useContext(DataContext);
 
   const roomFiltered = [...new Map(classrooms.map((m) => [m.name, m])).values()];
 
   return (
     <>
-      {schedules ?
-        <div className='selection schedules container'>
-          <form method='post' action='/api/schedules /api/classrooms' onSubmit={handleScheduleSubmit} className='form' >
+      {schedules ? (
+        <div className="selection schedules container">
+          <form
+            method="post"
+            action="/api/schedules /api/classrooms"
+            onSubmit={handleScheduleSubmit}
+            className="form"
+          >
             {/* <input type='text' placeholder="Date" name='date' required />
             <input type='text' placeholder="Start Time" name='start_time' required />
             <input type='text' placeholder="End Time" name='end_time' required /> */}
@@ -37,8 +43,8 @@ function ScheduleTable() {
               }))}
             </select> */}
             {/* <button type="submit">Add Schedule</button> */}
-          </form >
-          <div className='table'>
+          </form>
+          <div className="table">
             <table>
               <thead>
                 <tr>
@@ -51,48 +57,41 @@ function ScheduleTable() {
                 </tr>
               </thead>
               <tbody>
-                {schedules && schedules.map((schedule, index) => (
-                  <Row schedule={schedule} key={index} />))}
+                {schedules &&
+                  schedules.map((schedule, index) => <Row schedule={schedule} key={index} />)}
               </tbody>
             </table>
           </div>
-        </div > : <Loading />
-      }
+        </div>
+      ) : (
+        <Loading />
+      )}
     </>
-  )
+  );
 }
 
 // Data per row for each teacher
 function Row({ schedule }) {
   return (
     <>
-      <tr className='rows'>
-        <td>
-          {schedule.date && schedule.date.slice(0, 10)}
-        </td>
-        <td>
-          {schedule.start_time}
-        </td>
-        <td>
-          {schedule.end_time}
-        </td>
+      <tr className="rows">
+        <td>{schedule.date && schedule.date.slice(0, 10)}</td>
+        <td>{schedule.start_time}</td>
+        <td>{schedule.end_time}</td>
         <td>
           {schedule.student_first_name} {schedule.student_last_name}
         </td>
         <td>
           {schedule.teacher_first_name} {schedule.teacher_last_name}
         </td>
-        <td>
-          {schedule.classroom_name}
-        </td>
+        <td>{schedule.classroom_name}</td>
         <td className="edit-btn">
           <a className="update-btn">🖊️</a>
           <a className="delete-btn">❌</a>
         </td>
       </tr>
     </>
-  )
+  );
 }
-
 
 export default ScheduleTable;

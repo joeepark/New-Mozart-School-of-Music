@@ -1,12 +1,9 @@
-import pool from '../../server/model'
+import pool from '../../server/model';
 
 async function classrooms(req, res) {
   try {
     if (req.method === 'GET') {
-      return (
-        getClassrooms(req, res),
-        getScheduledClassrooms(req, res)
-      )
+      return getClassrooms(req, res), getScheduledClassrooms(req, res);
     } else if (req.method === 'POST') {
       return addClassroom(req, res);
     }
@@ -48,14 +45,13 @@ async function getClassrooms(req, res) {
   }
 }
 
-
 async function addClassroom(req, res) {
   const client = await pool.connect();
   try {
     const jsonData = req.body;
     const classroomData = JSON.parse(jsonData);
     const { name } = classroomData;
-    const query = `INSERT INTO classrooms (name) VALUES ($1)`
+    const query = `INSERT INTO classrooms (name) VALUES ($1)`;
     const response = await client.query(query, [name]);
     return res.status(200).json(response.rows);
   } catch (err) {
@@ -64,6 +60,5 @@ async function addClassroom(req, res) {
     await client.release();
   }
 }
-
 
 export default classrooms;

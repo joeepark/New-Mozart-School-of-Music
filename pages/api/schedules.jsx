@@ -1,4 +1,4 @@
-import pool from '../../server/model'
+import pool from '../../server/model';
 
 async function schedules(req, res) {
   try {
@@ -38,15 +38,21 @@ async function addSchedule(req, res) {
     const jsonData = req.body;
     const scheduleData = JSON.parse(jsonData);
     const { date, start_time, end_time, student_id, teacher_id, classroom_id } = scheduleData;
-    const query = `INSERT INTO schedules (date, start_time, end_time, student_id, teacher_id, classroom_id) VALUES ($1, $2, $3, $4, $5, $6);`
-    const response = await client.query(query, [date, start_time, end_time, student_id, teacher_id, classroom_id]);
+    const query = `INSERT INTO schedules (date, start_time, end_time, student_id, teacher_id, classroom_id) VALUES ($1, $2, $3, $4, $5, $6);`;
+    const response = await client.query(query, [
+      date,
+      start_time,
+      end_time,
+      student_id,
+      teacher_id,
+      classroom_id,
+    ]);
     return res.status(200).json(response.rows);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   } finally {
     await client.release();
   }
-  
 }
 
 export default schedules;

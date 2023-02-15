@@ -1,6 +1,6 @@
- import { useContext, useState } from "react";
-import DataContext from "../context/DataContext";
-import Loading from "./Loading";
+import { useContext, useState } from 'react';
+import DataContext from '../context/DataContext';
+import Loading from './Loading';
 
 function ClassroomTable() {
   const { classrooms, handleClassroomSubmit } = useContext(DataContext);
@@ -10,25 +10,32 @@ function ClassroomTable() {
 
   const handleClick = (event) => {
     setSelectedClassroom(event.target.value);
-  }
+  };
 
   return (
     <>
-      {classrooms ?
-        <div className='selection classrooms container'>
-          <form method='post' action='/api/classrooms' onSubmit={handleClassroomSubmit} className='form' >
+      {classrooms ? (
+        <div className="selection classrooms container">
+          <form
+            method="post"
+            action="/api/classrooms"
+            onSubmit={handleClassroomSubmit}
+            className="form"
+          >
             <select onClick={handleClick}>
               <option>-- Pick a room --</option>
               {roomFiltered.map((room, index) => {
                 return (
-                  <option value={room.name} key={index}>{room.name}</option>
-                )
+                  <option value={room.name} key={index}>
+                    {room.name}
+                  </option>
+                );
               })}
             </select>
-            <input type='text' placeholder="Name" name='name' required />
+            <input type="text" placeholder="Name" name="name" required />
             <button type="submit">Add Classroom</button>
-          </form >
-          <div className='table'>
+          </form>
+          <div className="table">
             <table>
               <thead>
                 <tr>
@@ -41,15 +48,19 @@ function ClassroomTable() {
                 </tr>
               </thead>
               <tbody>
-                {classrooms && classrooms.map((classroom, index) => (
-                  <Row classroom={classroom} selectedClassroom={selectedClassroom} key={index} />))}
+                {classrooms &&
+                  classrooms.map((classroom, index) => (
+                    <Row classroom={classroom} selectedClassroom={selectedClassroom} key={index} />
+                  ))}
               </tbody>
             </table>
           </div>
-        </div > : <Loading />
-      }
+        </div>
+      ) : (
+        <Loading />
+      )}
     </>
-  )
+  );
 }
 
 // Data per row for each teacher
@@ -57,19 +68,11 @@ function Row({ classroom, selectedClassroom }) {
   if (selectedClassroom === classroom.name) {
     return (
       <>
-        <tr className='rows'>
-          <td>
-            {classroom.name}
-          </td>
-          <td>
-            {classroom && classroom.schedule_date.slice(0, 10)}
-          </td>
-          <td>
-            {classroom.schedule_start_time}
-          </td>
-          <td>
-            {classroom.schedule_end_time}
-          </td>
+        <tr className="rows">
+          <td>{classroom.name}</td>
+          <td>{classroom && classroom.schedule_date.slice(0, 10)}</td>
+          <td>{classroom.schedule_start_time}</td>
+          <td>{classroom.schedule_end_time}</td>
           <td>
             {classroom.student_first_name} {classroom.student_last_name}
           </td>
@@ -82,11 +85,10 @@ function Row({ classroom, selectedClassroom }) {
           </td>
         </tr>
       </>
-    )
+    );
   } else {
     return;
   }
 }
-
 
 export default ClassroomTable;

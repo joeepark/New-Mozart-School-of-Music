@@ -1,4 +1,4 @@
-import pool from '../../server/model'
+import pool from '../../server/model';
 
 async function students(req, res) {
   try {
@@ -31,7 +31,8 @@ async function addStudent(req, res) {
     const jsonData = req.body;
     const studentData = JSON.parse(jsonData);
     const { first_name, last_name, dob, lesson, teacher_id } = studentData;
-    const query = 'INSERT INTO students (first_name, last_name, dob, lesson, teacher_id) VALUES ($1, $2, $3, $4, $5)';
+    const query =
+      'INSERT INTO students (first_name, last_name, dob, lesson, teacher_id) VALUES ($1, $2, $3, $4, $5)';
     const response = await client.query(query, [first_name, last_name, dob, lesson, teacher_id]);
     return res.status(200).json(response.rows);
   } catch (err) {
