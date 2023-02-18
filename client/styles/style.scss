@@ -23,8 +23,8 @@ html {
 
 :root {
   // Primary
-  --Dark-Orange: #f59b25;
-  --Light-Orange: #f9b862;
+  --Dark-Orange: #ffb048;
+  --Light-Orange: #ffb656e9;
 
   // Seconday
   --Black: #000000;
@@ -40,6 +40,7 @@ body {
   font-family: 'Caladea', serif;
   color: var(--Black);
   background-color: var(--Off-White);
+  letter-spacing: 0.07rem;
 }
 
 li {
@@ -52,17 +53,18 @@ a {
 
 // Navbar Styling
 .nav {
+  position: fixed;
   display: flex;
   flex-direction: column;
   float: left;
-  gap: 2em;
+  top: 0;
+  gap: 1em;
   align-items: center;
-  position: relative;
   background-color: var(--White);
   height: 100vh;
-  width: 15%;
+  width: 100%;
   font-size: 3rem;
-  min-width: 200px;
+  max-width: 190px;
   text-align: center;
 
   .nav-logo {
@@ -124,14 +126,16 @@ a {
     display: none;
   }
 
-  @media screen and (max-width: 568px) {
+  @media screen and (max-width: 768px) {
     height: 15%;
     width: 100vw;
+    max-height: 100px;
     flex-direction: row;
     justify-content: space-between;
     padding: 1.7em 1.7em 1.5em 1.1em;
-    position: relative;
-    z-index: 10;
+    max-width: none;
+    align-items: center;
+    z-index: 100;
 
     .nav-logo {
       margin: 0;
@@ -150,8 +154,8 @@ a {
       width: 100%;
       align-items: center;
       transition: all 0.3s ease-in-out;
-      z-index: -1;
       padding-top: 9em;
+      z-index: -1;
 
       ul {
         position: relative;
@@ -189,12 +193,7 @@ a {
 
 // Add New Students
 .add-new-students {
-  position: fixed;
-  top: 30%;
-  left: 30%;
-  margin-left: 15em;
-  width: 50%;
-  transform: translate(-50%, -50%);
+  margin: 11.2em 1em 0 200px;
   padding: 2em;
   background-color: var(--White);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -211,6 +210,16 @@ a {
     flex-direction: column;
     margin-top: 1em;
     width: 100%;
+    gap: 0.3em;
+
+    input {
+      height: 3em;
+      border-radius: 0.3em;
+    }
+
+    .input input:focus {
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    }
   }
 
   .form {
@@ -218,17 +227,10 @@ a {
   }
 
   @media screen and (max-width: 768px) {
+    margin: 120px 1.5em;
+
     .input-row {
       flex-direction: column;
     }
-  }
-
-  @media screen and (max-width: 568px) {
-    width: 90%;
-    margin: 0 auto;
-    position: static;
-    top: initial;
-    left: initial;
-    transform: initial;
   }
 }
