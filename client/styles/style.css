@@ -49,6 +49,7 @@ a {
 .nav {
   display: flex;
   flex-direction: column;
+  float: left;
   gap: 2em;
   align-items: center;
   position: relative;
@@ -83,6 +84,11 @@ a {
   background-color: var(--Light-Orange);
   color: var(--White);
 }
+.nav .nav-links .active {
+  background-color: var(--Dark-Orange);
+  color: var(--White);
+  font-weight: 700;
+}
 .nav .nav-dropdown-menu {
   min-width: max-content;
   overflow: hidden;
@@ -109,7 +115,9 @@ a {
     width: 100vw;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1.7em 2.5em 1.5em 2em;
+    padding: 1.7em 1.7em 1.5em 1.1em;
+    position: relative;
+    z-index: 10;
   }
   .nav .nav-logo {
     margin: 0;
@@ -144,25 +152,35 @@ a {
   }
 }
 
+.overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  margin-left: 10em;
+  width: 100%;
+}
+.overview div {
+  width: 30px;
+  height: 30px;
+  background-color: var(--White);
+}
+
 .add-new-students {
-  display: none;
-  max-width: 700px;
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  margin-left: 15em;
+  width: 50%;
+  transform: translate(-50%, -50%);
   padding: 2em;
   background-color: var(--White);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   overflow: auto;
-  width: 100%;
-  z-index: -1;
 }
 .add-new-students .input-row {
   display: flex;
   column-gap: 2em;
   width: 100%;
-}
-@media screen and (max-width: 568px) {
-  .add-new-students .input-row {
-    flex-direction: column;
-  }
 }
 .add-new-students .input {
   display: flex;
@@ -172,6 +190,21 @@ a {
 }
 .add-new-students .form {
   flex-wrap: wrap;
+}
+@media screen and (max-width: 768px) {
+  .add-new-students .input-row {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 568px) {
+  .add-new-students {
+    width: 90%;
+    margin: 0 auto;
+    position: static;
+    top: initial;
+    left: initial;
+    transform: initial;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
