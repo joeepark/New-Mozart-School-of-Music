@@ -23,7 +23,8 @@ html {
 
 :root {
   // Primary
-  --Orange: #f9b862;
+  --Dark-Orange: #f59b25;
+  --Light-Orange: #f9b862;
 
   // Seconday
   --Black: #000000;
@@ -61,6 +62,7 @@ a {
   width: 15%;
   font-size: 3rem;
   min-width: 200px;
+  text-align: center;
 
   .nav-logo {
     display: flex;
@@ -72,6 +74,7 @@ a {
   .nav-links {
     display: flex;
     justify-content: center;
+    width: 100%;
 
     a,
     li {
@@ -80,10 +83,13 @@ a {
       display: block;
     }
 
-    a:hover,
-    li:focus-within > a {
-      background-color: var(--Orange);
-      cursor: pointer;
+    ul {
+      width: 100%;
+    }
+
+    li:hover:not(.nav-dropdown) > a {
+      background-color: var(--Light-Orange);
+      color: var(--White);
     }
   }
 

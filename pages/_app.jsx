@@ -1,6 +1,6 @@
-import Nav from '../client/components/Nav';
 import { DataProvider } from '../client/context/DataContext';
-import '../client/globals.css';
+import '../client/styles/style.css';
+import Nav from '../client/components/layout/Nav';
 
 function MyApp({ Component, pageProps }) {
   return (

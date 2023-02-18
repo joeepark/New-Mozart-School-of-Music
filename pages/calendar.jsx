@@ -19,8 +19,6 @@ function Calendarz(props) {
     };
   });
 
-  // console.log('events', events);
-
   return (
     <div className="calendar">
       <Calendar
