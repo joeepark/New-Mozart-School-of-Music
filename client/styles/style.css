@@ -25,8 +25,12 @@ html {
 :root {
   --Dark-Orange: #ffb048;
   --Light-Orange: #ffb656e9;
+  --Lighter-Orange: #ffbb6239;
+  --Yellow: #ffc926;
   --Black: #000000;
+  --Navy-Blue: #286090;
   --Grey: #494949;
+  --Light-Grey: #9197b68e;
   --White: #ffffff;
   --Off-White: #f2f3f7;
 }
@@ -37,6 +41,7 @@ body {
   color: var(--Black);
   background-color: var(--Off-White);
   letter-spacing: 0.07rem;
+  overflow: hidden;
 }
 
 li {
@@ -96,6 +101,9 @@ a {
   overflow: hidden;
   max-height: 0;
   transition: max-height 1s;
+}
+.nav .nav-dropdown-menu li {
+  font-size: 2.2rem;
 }
 .nav .nav-dropdown:hover .nav-dropdown-menu,
 .nav .nav-dropdown:focus .nav-dropdown-menu,
@@ -169,41 +177,202 @@ a {
   background-color: var(--White);
 }
 
-.add-new-students {
+.add-new {
   margin: 11.2em 1em 0 200px;
   padding: 2em;
   background-color: var(--White);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   overflow: auto;
 }
-.add-new-students .input-row {
+.add-new .input-row {
   display: flex;
-  column-gap: 2em;
+  column-gap: 1em;
   width: 100%;
 }
-.add-new-students .input {
+.add-new .input-row button {
+  margin-top: 1.5em;
+  height: 3em;
+  width: 100%;
+  font-weight: 700;
+  color: var(--White);
+  border-radius: 0.3em;
+  border: none;
+}
+.add-new .input-row #submit-btn {
+  background-color: var(--Yellow);
+}
+.add-new .input-row #cancel-btn {
+  background-color: var(--Light-Grey);
+}
+.add-new .address {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.add-new .address .input:nth-child(2) {
+  margin-top: 2.35em;
+}
+.add-new .input {
   display: flex;
   flex-direction: column;
   margin-top: 1em;
   width: 100%;
   gap: 0.3em;
 }
-.add-new-students .input input {
+.add-new .input input {
   height: 3em;
   border-radius: 0.3em;
+  padding-left: 1em;
 }
-.add-new-students .input .input input:focus {
+.add-new .input .input input:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-.add-new-students .form {
-  flex-wrap: wrap;
-}
 @media screen and (max-width: 768px) {
-  .add-new-students {
+  .add-new {
     margin: 120px 1.5em;
   }
-  .add-new-students .input-row {
+  .add-new .input-row {
     flex-direction: column;
+  }
+  .add-new .address {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .add-new .address .input:nth-child(2) {
+    margin-top: 1em;
+  }
+}
+
+.calendar {
+  margin: 5em 1em 0 200px;
+  background-color: var(--Off-White);
+  font-size: 1.5rem;
+}
+.calendar .teacher-info {
+  padding: 1em;
+  background-color: var(--White);
+  font-size: 2rem;
+}
+.calendar .teacher-info p:not(:first-child) {
+  margin-top: 0.5em;
+}
+.calendar .rbc-btn-group > button {
+  font-family: "Caladea", sans-serif;
+  font-size: 1.5rem;
+  height: 2em;
+}
+.calendar .rbc-calendar {
+  margin-top: 1em;
+  border: 1px solid rgb(199, 199, 199);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  background-color: var(--White);
+  padding: 2.5em;
+}
+.calendar .rbc-btn-group > .rbc-active,
+.calendar .rbc-btn-group > .rbc-active:focus-within {
+  color: var(--White);
+  background-color: var(--Dark-Orange);
+  font-weight: 700;
+}
+.calendar .rbc-label {
+  font-size: 1.5rem;
+}
+.calendar .rbc-toolbar-label {
+  font-size: 2.5rem;
+}
+.calendar .rbc-agenda-empty {
+  font-size: 2rem;
+}
+.calendar .rbc-agenda-table {
+  font-size: 1.8rem;
+}
+.calendar .rbc-toolbar {
+  margin-bottom: 1.5em;
+}
+.calendar .rbc-day-bg.rbc-today {
+  background-color: var(--Lighter-Orange);
+}
+.calendar .rbc-day-slot.rbc-time-column.rbc-now.rbc-today {
+  background-color: var(--Lighter-Orange);
+}
+.calendar .rbc-header.rbc-today {
+  background-color: var(--Lighter-Orange);
+}
+.calendar .rbc-current-time-indicator {
+  background-color: var(--Black);
+}
+.calendar .rbc-event,
+.calendar .rbc-event-content,
+.calendar .rbc-event.rbc-selected {
+  background-color: var(--Navy-Blue);
+  border: none;
+}
+@media screen and (max-width: 768px) {
+  .calendar {
+    margin: 120px 1em;
+  }
+  .calendar .rbc-toolbar-label {
+    margin: 0.5em 0;
+  }
+  .calendar .rbc-calendar {
+    padding: 1em;
+  }
+}
+
+.data-table-teachers {
+  margin: 5em 1em 0 200px;
+  background-color: var(--White);
+  text-align: center;
+  border: 0.5px solid var(--Light-Grey);
+  padding: 1.2em 0;
+}
+.data-table-teachers table {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr);
+}
+.data-table-teachers thead,
+.data-table-teachers tbody,
+.data-table-teachers tr {
+  display: contents;
+}
+.data-table-teachers th,
+.data-table-teachers td {
+  padding: 0.5em;
+}
+.data-table-teachers tr:nth-child(even) td {
+  background: var(--Off-White);
+}
+@media screen and (max-width: 768px) {
+  .data-table-teachers {
+    margin: 120px 1em;
+  }
+}
+
+.data-table-students {
+  margin: 5em 1em 0 200px;
+  background-color: var(--White);
+  text-align: center;
+  border: 0.5px solid var(--Light-Grey);
+  padding: 1.2em 0;
+  overflow-x: scroll;
+}
+.data-table-students table {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr);
+}
+.data-table-students thead,
+.data-table-students tbody,
+.data-table-students tr {
+  display: contents;
+}
+.data-table-students th,
+.data-table-students td {
+  padding: 0.5em;
+}
+.data-table-students tr:nth-child(even) td {
+  background: var(--Off-White);
+}
+@media screen and (max-width: 768px) {
+  .data-table-students {
+    margin: 120px 1em;
   }
 }
 
