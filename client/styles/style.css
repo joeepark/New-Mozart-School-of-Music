@@ -41,7 +41,6 @@ body {
   color: var(--Black);
   background-color: var(--Off-White);
   letter-spacing: 0.07rem;
-  overflow: hidden;
 }
 
 li {
@@ -165,20 +164,30 @@ a {
 }
 
 .overview {
+  margin: 8em 1em 0 210px;
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
-  margin-left: 10em;
-  width: 100%;
+  text-align: center;
+  max-width: 1300px;
 }
 .overview div {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  padding: 1em;
   background-color: var(--White);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.overview div p {
+  margin-top: 1em;
+}
+@media screen and (max-width: 768px) {
+  .overview {
+    margin: 115px 1em;
+  }
 }
 
 .add-new {
-  margin: 11.2em 1em 0 200px;
+  margin: 11.2em 1em 0 205px;
   padding: 2em;
   background-color: var(--White);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -228,7 +237,7 @@ a {
 }
 @media screen and (max-width: 768px) {
   .add-new {
-    margin: 120px 1.5em;
+    margin: 115px 1.5em;
   }
   .add-new .input-row {
     flex-direction: column;
@@ -242,9 +251,10 @@ a {
 }
 
 .calendar {
-  margin: 5em 1em 0 200px;
+  margin: 5em 1em 1em 205px;
   background-color: var(--Off-White);
   font-size: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 .calendar .teacher-info {
   padding: 1em;
@@ -262,7 +272,6 @@ a {
 .calendar .rbc-calendar {
   margin-top: 1em;
   border: 1px solid rgb(199, 199, 199);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   background-color: var(--White);
   padding: 2.5em;
 }
@@ -307,7 +316,7 @@ a {
 }
 @media screen and (max-width: 768px) {
   .calendar {
-    margin: 120px 1em;
+    margin: 115px 1em;
   }
   .calendar .rbc-toolbar-label {
     margin: 0.5em 0;
@@ -318,11 +327,13 @@ a {
 }
 
 .data-table-teachers {
-  margin: 5em 1em 0 200px;
+  margin: 5em 1em 0 205px;
   background-color: var(--White);
   text-align: center;
   border: 0.5px solid var(--Light-Grey);
   padding: 1.2em 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
 .data-table-teachers table {
   display: grid;
@@ -342,17 +353,18 @@ a {
 }
 @media screen and (max-width: 768px) {
   .data-table-teachers {
-    margin: 120px 1em;
+    margin: 115px 1em;
   }
 }
 
 .data-table-students {
-  margin: 5em 1em 0 200px;
+  margin: 5em 1em 0 205px;
   background-color: var(--White);
   text-align: center;
   border: 0.5px solid var(--Light-Grey);
   padding: 1.2em 0;
-  overflow-x: scroll;
+  overflow: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 .data-table-students table {
   display: grid;
@@ -372,7 +384,7 @@ a {
 }
 @media screen and (max-width: 768px) {
   .data-table-students {
-    margin: 120px 1em;
+    margin: 115px 1em;
   }
 }
 
