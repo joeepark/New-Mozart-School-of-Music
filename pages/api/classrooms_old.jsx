@@ -1,4 +1,4 @@
-import pool from '../../server/model';
+import supabase from '../../server/model';
 
 async function classrooms(req, res) {
   try {
@@ -13,7 +13,7 @@ async function classrooms(req, res) {
 }
 
 async function getScheduledClassrooms(req, res) {
-  const client = await pool.connect();
+  const client = await supabase.connect();
   try {
     const query = `SELECT classrooms.id, classrooms.name, schedules.date AS schedule_date, schedules.start_time AS schedule_start_time, schedules.end_time AS schedule_end_time, students.first_name AS student_first_name, students.last_name AS student_last_name, teachers.first_name as teacher_first_name, teachers.last_name AS teacher_last_name
     FROM classrooms

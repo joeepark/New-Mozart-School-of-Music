@@ -14,7 +14,7 @@ async function students(req, res) {
 
 async function getStudents(req, res) {
   try {
-    const { data } = await supabase.from('students').select('*');
+    const { data } = await supabase.from('overview').select('*');
     return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({ error: error.message });

@@ -53,6 +53,7 @@ li {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 // Navbar Styling
@@ -191,7 +192,6 @@ a {
   flex-wrap: wrap;
   gap: 2em;
   text-align: center;
-  max-width: 1300px;
 
   div {
     width: 100%;
@@ -202,6 +202,12 @@ a {
     p {
       margin-top: 1em;
     }
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    text-align: center;
   }
 
   @media screen and (max-width: 768px) {
@@ -261,10 +267,13 @@ a {
       height: 3em;
       border-radius: 0.3em;
       padding-left: 1em;
+      outline: none;
+      border: 1px solid #ddd;
+      color: var(--Grey);
     }
 
-    .input input:focus {
-      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    input:focus {
+      box-shadow: 0 1px 0 var(--Grey);
     }
   }
 
@@ -292,13 +301,30 @@ a {
   font-size: 1.5rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-  .teacher-info {
+  .teacher {
+    display: flex;
+    justify-content: space-between;
     padding: 1em;
     background-color: var(--White);
     font-size: 2rem;
+  }
 
+  .teacher-info {
     p:not(:first-child) {
       margin-top: 0.5em;
+    }
+  }
+
+  .teacher-select {
+    select {
+      border: none;
+      border-radius: 0.3em;
+      text-align: center;
+      padding: 1em;
+
+      option:nth-child(1) {
+        background-color: var(--Dark-Orange);
+      }
     }
   }
 
@@ -385,13 +411,19 @@ a {
   padding: 1.2em 0;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   overflow: auto;
+  font-size: 1.6rem;
 
   table {
     display: grid;
     grid-template-columns:
-      minmax(150px, 1fr)
-      minmax(150px, 1fr)
-      minmax(150px, 1fr);
+      minmax(120px, 1fr)
+      minmax(120px, 1fr)
+      minmax(auto, 1fr)
+      minmax(auto, 1fr)
+      minmax(250px, 1fr)
+      minmax(250px, 1fr)
+      minmax(auto, 1fr)
+      minmax(auto, 1fr);
   }
 
   thead,
@@ -422,15 +454,22 @@ a {
   padding: 1.2em 0;
   overflow: auto;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-size: 1.6rem;
 
   table {
     display: grid;
     grid-template-columns:
+      minmax(120px, 1fr)
+      minmax(120px, 1fr)
+      minmax(120px, 1fr)
+      minmax(120px, 1fr)
+      minmax(auto, 1fr)
+      minmax(auto, 1fr)
       minmax(150px, 1fr)
       minmax(150px, 1fr)
-      minmax(150px, 1fr)
-      minmax(150px, 1fr)
-      minmax(150px, 1fr);
+      minmax(auto, 1fr)
+      minmax(auto, 1fr)
+      minmax(auto, 1fr);
   }
 
   thead,

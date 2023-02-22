@@ -1,4 +1,4 @@
-import pool from '../../server/model';
+import supabase from '../../server/model';
 
 async function teachers(req, res) {
   try {
@@ -14,31 +14,34 @@ async function teachers(req, res) {
 }
 
 async function getTeachers(req, res) {
-  const client = await pool.connect();
   try {
-    const query = 'SELECT * FROM "public"."teachers"';
-    const response = await client.query(query);
-    return res.status(200).json(response.rows);
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  } finally {
-    await client.release();
+    const { data } = await supabase.from('teachers').select('*');
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 }
 
 async function addTeacher(req, res) {
-  const client = await pool.connect();
   try {
     const jsonData = req.body;
     const teacherData = JSON.parse(jsonData);
-    const { first_name, last_name } = teacherData;
-    const query = 'INSERT INTO teachers (first_name, last_name) VALUES ($1, $2)';
-    const response = await client.query(query, [first_name, last_name]);
+    const { first_name, last_name, email, phone_number, instruments, studio_policies, zoom_link } =
+      teacherData;
+    const response = await supabase.from('teachers').insert([
+      {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        phone_number: phone_number,
+        instruments: instruments,
+        studio_policies: studio_policies,
+        zoom_link: zoom_link,
+      },
+    ]);
     return res.status(200).json(response.rows);
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  } finally {
-    await client.release();
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 }
 
