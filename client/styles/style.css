@@ -196,7 +196,7 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   .overview {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
   }
 }
 
@@ -254,7 +254,7 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   .add-new {
-    margin: 115px 1.5em;
+    margin: 115px 1em 1.5em;
   }
   .add-new .input-row {
     flex-direction: column;
@@ -358,10 +358,26 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   .calendar {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
+  }
+  .calendar .teacher-info {
+    font-size: 1.6rem;
+  }
+  .calendar .teacher-select {
+    margin-left: 1em;
+  }
+  .calendar .teacher-select button {
+    font-size: 1.5rem;
+  }
+  .calendar .teacher-select select {
+    font-size: 1.5rem;
   }
   .calendar .rbc-toolbar-label {
     margin: 0.5em 0;
+  }
+  .calendar .rbc-toolbar {
+    flex-direction: column;
+    padding-top: 0.5em;
   }
   .calendar .rbc-calendar {
     padding: 1em;
@@ -396,7 +412,7 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   .data-table-teachers {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
   }
 }
 
@@ -428,7 +444,7 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   .data-table-students {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
   }
 }
 

@@ -220,7 +220,7 @@ button:active {
   }
 
   @media screen and (max-width: 768px) {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
   }
 }
 
@@ -287,7 +287,7 @@ button:active {
   }
 
   @media screen and (max-width: 768px) {
-    margin: 115px 1.5em;
+    margin: 115px 1em 1.5em;
 
     .input-row {
       flex-direction: column;
@@ -413,10 +413,30 @@ button:active {
   }
 
   @media screen and (max-width: 768px) {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
+
+    .teacher-info {
+      font-size: 1.6rem;
+    }
+
+    .teacher-select {
+      margin-left: 1em;
+
+      button {
+        font-size: 1.5rem;
+      }
+      select {
+        font-size: 1.5rem;
+      }
+    }
 
     .rbc-toolbar-label {
       margin: 0.5em 0;
+    }
+
+    .rbc-toolbar {
+      flex-direction: column;
+      padding-top: 0.5em;
     }
 
     .rbc-calendar {
@@ -465,7 +485,7 @@ button:active {
   }
 
   @media screen and (max-width: 768px) {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
   }
 }
 
@@ -511,6 +531,6 @@ button:active {
   }
 
   @media screen and (max-width: 768px) {
-    margin: 115px 1em;
+    margin: 115px 1em 1.5em;
   }
 }
