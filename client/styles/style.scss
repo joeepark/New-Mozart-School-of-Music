@@ -56,6 +56,15 @@ a {
   cursor: pointer;
 }
 
+button {
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
 // Navbar Styling
 .nav {
   position: fixed;
@@ -316,11 +325,25 @@ a {
   }
 
   .teacher-select {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    button {
+      padding: 1em;
+      border: none;
+      border-radius: 0.3em;
+      background-color: var(--Yellow);
+      color: var(--White);
+      font-weight: 700;
+    }
+
     select {
       border: none;
       border-radius: 0.3em;
       text-align: center;
       padding: 1em;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
       option:nth-child(1) {
         background-color: var(--Dark-Orange);

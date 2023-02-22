@@ -8,7 +8,7 @@ import Loading from '../layout/Loading';
 
 const localizer = momentLocalizer(moment);
 
-function CalendarTeacher(props) {
+function CalendarTeacher() {
   const { schedules, teachers } = useContext(DataContext);
   teachers.sort(function (a, b) {
     const firstNameA = a.first_name.toUpperCase();
@@ -77,6 +77,7 @@ function CalendarTeacher(props) {
                 );
               })}
             </select>
+            <button>Create Schedule</button>
           </div>
         </div>
 
