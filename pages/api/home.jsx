@@ -1,4 +1,3 @@
-import supabase from '../../server/model';
 
 // async function students(req, res) {
 //   try {

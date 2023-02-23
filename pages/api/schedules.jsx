@@ -1,4 +1,4 @@
-import supabase from '../../server/model';
+import supabase from '/pages/api/model/model';
 
 async function schedules(req, res) {
   try {
