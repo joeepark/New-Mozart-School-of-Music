@@ -1,4 +1,4 @@
-import AddNewTeachers from '../client/components/add-new/AddNewTeacher';
+import AddNewTeachers from '../client/components/registration/AddNewTeacher';
 
 function addnewteacher() {
   return <AddNewTeachers />;

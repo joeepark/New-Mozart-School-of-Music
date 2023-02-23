@@ -9,17 +9,19 @@ function Nav() {
   const [open, setOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
-  function handleClick(e) {
-    setActiveLink(e.target.pathname);
+  function handleClick(event) {
+    setActiveLink(event.target.pathname);
     setOpen(false);
   }
 
   return (
     <nav className="nav">
-      <div className="nav-logo">
-        <Image src={logo1} alt="logo" height={60} />
-        <Image src={logo2} alt="logo" height={45} />
-      </div>
+      <Link href="/">
+        <div className="nav-logo">
+          <Image src={logo1} alt="logo" height={60} />
+          <Image src={logo2} alt="logo" height={45} />
+        </div>
+      </Link>
       <input type="checkbox" id="nav-toggle" checked={open} onChange={() => setOpen(!open)} />
       <label htmlFor="nav-toggle" className="nav-checkbox">
         <i className="fas fa-bars"></i>
@@ -28,11 +30,11 @@ function Nav() {
         <ul>
           <li>
             <Link href="/" onClick={handleClick} className={activeLink === '/' ? 'active' : ''}>
-              Overview
+              Home
             </Link>
           </li>
           <li className="nav-dropdown">
-            Add New <Image src={dropdown} alt="dropdown icon" height={20} />
+            Registration <Image src={dropdown} alt="dropdown icon" height={20} />
             <ul className="nav-dropdown-menu">
               <li>
                 <Link

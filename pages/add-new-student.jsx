@@ -1,4 +1,4 @@
-import AddNewStudents from '../client/components/add-new/AddNewStudent';
+import AddNewStudents from '../client/components/registration/AddNewStudent';
 
 function addnewstudent() {
   return <AddNewStudents />;
