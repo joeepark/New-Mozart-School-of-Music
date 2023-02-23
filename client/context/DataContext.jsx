@@ -3,10 +3,9 @@ import { createContext, useState, useEffect } from 'react';
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [overview, setOverview] = useState([]);
+  // const [overview, setOverview] = useState([]);
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
-  const [classrooms, setClassrooms] = useState([]);
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
@@ -14,14 +13,14 @@ export const DataProvider = ({ children }) => {
       try {
         const response = (
           await Promise.all([
-            fetch('/api/overview'),
+            // fetch('/api/overview'),
             fetch('/api/students'),
             fetch('/api/teachers'),
             fetch('/api/schedules'),
           ])
         ).map((res) => res.json());
-        const [overview, students, teachers, schedules] = await Promise.all(response);
-        setOverview(overview);
+        const [students, teachers, schedules] = await Promise.all(response);
+        // setOverview(overview);
         setStudents(students);
         setTeachers(teachers);
         setSchedules(schedules);
@@ -31,19 +30,20 @@ export const DataProvider = ({ children }) => {
     };
     fetchData();
   }, [
-    JSON.stringify(overview),
+    // JSON.stringify(overview),
     JSON.stringify(students),
     JSON.stringify(teachers),
-    JSON.stringify(classrooms),
     JSON.stringify(schedules),
   ]);
 
-  const handleOverviewSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const announcements = formData.get('announcements');
-    console.log(formData);
-  };
+  // Submit Functions
+
+  // const handleOverviewSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.target);
+  //   const announcements = formData.get('announcements');
+  //   console.log(formData);
+  // };
 
   const handleStudentSubmit = async (event) => {
     event.preventDefault();
@@ -79,6 +79,16 @@ export const DataProvider = ({ children }) => {
       });
       if (response.ok) {
         const data = await response.json();
+        event.target.elements.first_name.value = '';
+        event.target.elements.last_name.value = '';
+        event.target.elements.parent_first_name.value = '';
+        event.target.elements.parent_last_name.value = '';
+        event.target.elements.email.value = '';
+        event.target.elements.phone_number.value = '';
+        event.target.elements.street_address.value = '';
+        event.target.elements.city_address.value = '';
+        event.target.elements.state_address.value = '';
+        event.target.elements.zip_address.value = '';
         setStudents([...students, data]);
       } else {
         console.error(response.statusText);
@@ -115,6 +125,13 @@ export const DataProvider = ({ children }) => {
       });
       if (response.ok) {
         const data = await response.json();
+        event.target.elements.first_name.value = '';
+        event.target.elements.last_name.value = '';
+        event.target.elements.email.value = '';
+        event.target.elements.phone_number.value = '';
+        event.target.elements.instruments.value = '';
+        event.target.elements.studio_policies.value = '';
+        event.target.elements.zoom_link.value = '';
         setTeachers([...teachers, data]);
       } else {
         console.error(response.statusText);
@@ -160,18 +177,69 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  // Update Functions
+  const handleStudentUpdate = async () => {
+    try {
+      const response = await fetch(`/api/students`, {
+        method: 'PUT',
+        body: id,
+      });
+      if (response.ok) {
+        setStudents((students) => students.filter((student) => student.id !== id));
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // Delete Functions
+  const handleStudentDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/students`, {
+        method: 'DELETE',
+        body: id,
+      });
+      if (response.ok) {
+        setStudents((students) => students.filter((student) => student.id !== id));
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleTeacherDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/teachers`, {
+        method: 'DELETE',
+        body: id,
+      });
+      if (response.ok) {
+        setTeachers((teachers) => teachers.filter((teacher) => teacher.id !== id));
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <DataContext.Provider
       value={{
-        overview,
+        // overview,
         students,
         teachers,
-        classrooms,
         schedules,
-        handleOverviewSubmit,
+        // handleOverviewSubmit,
         handleScheduleSubmit,
         handleTeacherSubmit,
         handleStudentSubmit,
+        handleTeacherDelete,
+        handleStudentDelete,
       }}
     >
       {children}

@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import DataContext from '/client/context/DataContext';
 import Loading from '/client/components/layout/Loading';
+import remove from '/client/assets/delete.png';
+import edit from '/client/assets/edit.png';
+import Image from 'next/image';
 
 function Students() {
   const { students } = useContext(DataContext);
@@ -19,7 +22,7 @@ function Students() {
   return (
     <section className="data-table-students">
       {students ? (
-        <div className="table">
+        <div>
           <table>
             <thead>
               <tr>
@@ -50,7 +53,9 @@ function Students() {
 
 // Data per row for each student
 function Row({ student }) {
+  const { handleStudentDelete } = useContext(DataContext);
   const {
+    id,
     first_name,
     last_name,
     parent_first_name,
@@ -62,28 +67,31 @@ function Row({ student }) {
     state_address,
     zip_address,
   } = student;
+
+  const handleDeleteClick = () => {
+    handleStudentDelete(id);
+  };
+
   return (
-    <>
-      <tr className="rows">
-        <td>{first_name}</td>
-        <td>{last_name}</td>
-        <td>{parent_first_name}</td>
-        <td>{parent_last_name}</td>
-        <td>{email}</td>
-        <td>{`${phone_number.slice(0, 3)}-${phone_number.slice(3, 6)}-${phone_number.slice(
-          6,
-          10
-        )}`}</td>
-        <td>{street_address}</td>
-        <td>{city_address}</td>
-        <td>{state_address}</td>
-        <td>{zip_address}</td>
-        <td className="edit-btn">
-          <a className="update-btn">🖊️</a>
-          <a className="delete-btn">❌</a>
-        </td>
-      </tr>
-    </>
+    <tr>
+      <td>{first_name}</td>
+      <td>{last_name}</td>
+      <td>{parent_first_name}</td>
+      <td>{parent_last_name}</td>
+      <td>{email}</td>
+      <td>{`${phone_number.slice(0, 3)}-${phone_number.slice(3, 6)}-${phone_number.slice(
+        6,
+        10
+      )}`}</td>
+      <td>{street_address}</td>
+      <td>{city_address}</td>
+      <td>{state_address}</td>
+      <td>{zip_address}</td>
+      <td className="edit-buttons">
+        <Image src={edit} alt="edit button" height={18}></Image>
+        <Image src={remove} alt="delete button" height={18} onClick={handleDeleteClick}></Image>
+      </td>
+    </tr>
   );
 }
 

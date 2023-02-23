@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Overview from '/client/components/overview/Overview';
+import HomePage from '/client/components/home/Home';
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <meta name="description" content="music school for aspiring musicians" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Overview />
+      <HomePage />
     </>
   );
 }

@@ -10,6 +10,7 @@ const localizer = momentLocalizer(moment);
 
 function CalendarTeacher() {
   const { schedules, teachers } = useContext(DataContext);
+
   teachers.sort(function (a, b) {
     const firstNameA = a.first_name.toUpperCase();
     const firstNameB = b.first_name.toUpperCase();
@@ -24,8 +25,8 @@ function CalendarTeacher() {
 
   const [selectedTeacher, setSelectedTeacher] = useState({});
 
-  const handleChange = (e) => {
-    const selectedTeacherName = e.target.value;
+  const handleChange = (event) => {
+    const selectedTeacherName = event.target.value;
     const selectedTeacherObj = teachers.find((teacher) => {
       return `${teacher.first_name} ${teacher.last_name}` === selectedTeacherName;
     });
@@ -90,6 +91,7 @@ function CalendarTeacher() {
           step={15}
           min={new Date(2023, 1, 0, 9, 0, 0)}
           max={new Date(2023, 1, 0, 21, 0, 0)}
+          popup
         />
       </section>
     );

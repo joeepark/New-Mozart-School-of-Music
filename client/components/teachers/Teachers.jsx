@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import DataContext from '/client/context/DataContext';
 import Loading from '/client/components/layout/Loading';
+import remove from '/client/assets/delete.png';
+import edit from '/client/assets/edit.png';
+import Image from 'next/image';
 
 function Teachers() {
   const { teachers } = useContext(DataContext);
@@ -19,7 +22,7 @@ function Teachers() {
   return (
     <section className="data-table-teachers">
       {teachers ? (
-        <table className="table">
+        <table>
           <thead>
             <tr>
               <th>First Name</th>
@@ -45,23 +48,37 @@ function Teachers() {
 
 // Data per row for each teacher
 function Row({ teacher }) {
-  const { first_name, last_name, email, phone_number, instruments, studio_policies, zoom_link } =
-    teacher;
+  const { handleTeacherDelete } = useContext(DataContext);
+  const {
+    id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    instruments,
+    studio_policies,
+    zoom_link,
+  } = teacher;
+
+  const handleDeleteClick = () => {
+    handleTeacherDelete(id);
+  };
+
   return (
-    <tr className="table-rows">
-      <td className="table">{first_name}</td>
-      <td className="table">{last_name}</td>
-      <td className="table">{email}</td>
+    <tr>
+      <td>{first_name}</td>
+      <td>{last_name}</td>
+      <td>{email}</td>
       <td>{`${phone_number.slice(0, 3)}-${phone_number.slice(3, 6)}-${phone_number.slice(
         6,
         10
       )}`}</td>
-      <td className="table">{instruments}</td>
-      <td className="table">{studio_policies}</td>
-      <td className="table">{zoom_link}</td>
-      <td className="edit-btns table">
-        <a className="update-btn">🖊️</a>
-        <a className="delete-btn">❌</a>
+      <td>{instruments}</td>
+      <td>{studio_policies}</td>
+      <td>{zoom_link}</td>
+      <td className="edit-buttons">
+        <Image src={edit} alt="edit button" height={18}></Image>
+        <Image src={remove} alt="delete button" height={18} onClick={handleDeleteClick}></Image>
       </td>
     </tr>
   );

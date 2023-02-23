@@ -4,7 +4,7 @@ import editBtn from '/client/assets/edit.png';
 import deleteBtn from '/client/assets/delete.png';
 import Image from 'next/image';
 
-function Overview() {
+function Home() {
   const { overview, handleOverviewSubmit } = useContext(DataContext);
   const [content, setContent] = useState('');
 
@@ -51,4 +51,4 @@ function Overview() {
   );
 }
 
-export default Overview;
+export default Home;

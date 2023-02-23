@@ -22,19 +22,17 @@ html {
 }
 
 :root {
-  // Primary
   --Dark-Orange: #ffb048;
   --Light-Orange: #ffb656e9;
   --Lighter-Orange: #ffbb6239;
   --Yellow: #ffc926;
+  --Red: #d00000;
 
-  // Seconday
   --Black: #000000;
   --Navy-Blue: #286090;
   --Grey: #494949;
   --Light-Grey: #9197b68e;
 
-  // Neutral
   --White: #ffffff;
   --Off-White: #f2f3f7;
 }
@@ -72,18 +70,18 @@ button:active {
   flex-direction: column;
   float: left;
   top: 0;
-  gap: 1em;
+  gap: 0.7em;
   align-items: center;
   background-color: var(--White);
   height: 100vh;
   width: 100%;
-  font-size: 3rem;
+  font-size: 2.5rem;
   max-width: 190px;
   text-align: center;
 
   .nav-logo {
     display: flex;
-    margin-top: 2em;
+    margin-top: 0.7em;
     align-items: center;
     gap: 0.2em;
   }
@@ -194,9 +192,9 @@ button:active {
   }
 }
 
-// Overview
+// Home Styling
 .overview {
-  margin: 8em 1em 0 210px;
+  margin: 1em 1em 1em 210px;
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
@@ -224,9 +222,9 @@ button:active {
   }
 }
 
-// Add New
+// Add New Styling
 .add-new {
-  margin: 11.2em 1em 0 205px;
+  margin: 1em 1em 1em 205px;
   padding: 2em;
   background-color: var(--White);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -248,11 +246,19 @@ button:active {
     }
 
     #submit-btn {
-      background-color: var(--Yellow);
+      background-color: var(--Navy-Blue);
     }
 
     #cancel-btn {
       background-color: var(--Light-Grey);
+    }
+
+    #submit-btn:active {
+      background-color: var(--Yellow);
+    }
+
+    #cancel-btn:active {
+      background-color: var(--Red);
     }
   }
 
@@ -303,9 +309,9 @@ button:active {
   }
 }
 
-// Calendar
+// Calendar Styling
 .calendar {
-  margin: 5em 1em 1em 205px;
+  margin: 1em 1em 1em 205px;
   background-color: var(--Off-White);
   font-size: 1.5rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -333,9 +339,13 @@ button:active {
       padding: 1em;
       border: none;
       border-radius: 0.3em;
-      background-color: var(--Yellow);
+      background-color: var(--Navy-Blue);
       color: var(--White);
       font-weight: 700;
+    }
+
+    button:active {
+      background-color: var(--Yellow);
     }
 
     select {
@@ -344,11 +354,26 @@ button:active {
       text-align: center;
       padding: 1em;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-
-      option:nth-child(1) {
-        background-color: var(--Dark-Orange);
-      }
+      outline: none;
+      background-color: #1c2b36;
+      color: var(--White);
+      font-weight: 700;
     }
+    option {
+      font-weight: 700;
+    }
+
+    option:nth-child(1) {
+      display: none;
+    }
+  }
+
+  .create-schedule {
+    display: none;
+  }
+
+  .create-schedule {
+    display: none;
   }
 
   .rbc-btn-group > button {
@@ -445,9 +470,42 @@ button:active {
   }
 }
 
-// Table Data
+// Table Data Styling
+table {
+  thead,
+  tbody,
+  tr {
+    display: contents;
+  }
+
+  th {
+    margin-bottom: 0.6em;
+  }
+
+  td {
+    padding: 0.5em;
+    height: 100%;
+  }
+
+  tr:nth-child(even) td {
+    background-color: var(--Off-White);
+  }
+
+  tbody tr:hover td {
+    background-color: var(--Light-Grey);
+  }
+
+  .edit-buttons img {
+    cursor: pointer;
+  }
+
+  .edit-buttons img:nth-child(1) {
+    margin-right: 0.4em;
+  }
+}
+
 .data-table-teachers {
-  margin: 5em 1em 0 205px;
+  margin: 1em 1em 1em 205px;
   background-color: var(--White);
   text-align: center;
   border: 0.5px solid var(--Light-Grey);
@@ -462,26 +520,12 @@ button:active {
       minmax(120px, 1fr)
       minmax(120px, 1fr)
       minmax(auto, 1fr)
-      minmax(auto, 1fr)
+      minmax(120px, 1fr)
       minmax(250px, 1fr)
       minmax(250px, 1fr)
       minmax(auto, 1fr)
-      minmax(auto, 1fr);
-  }
-
-  thead,
-  tbody,
-  tr {
-    display: contents;
-  }
-
-  th,
-  td {
-    padding: 0.5em;
-  }
-
-  tr:nth-child(even) td {
-    background: var(--Off-White);
+      minmax(120px, 1fr);
+    align-items: end;
   }
 
   @media screen and (max-width: 768px) {
@@ -490,7 +534,7 @@ button:active {
 }
 
 .data-table-students {
-  margin: 5em 1em 0 205px;
+  margin: 1em 1em 1em 205px;
   background-color: var(--White);
   text-align: center;
   border: 0.5px solid var(--Light-Grey);
@@ -507,27 +551,13 @@ button:active {
       minmax(120px, 1fr)
       minmax(120px, 1fr)
       minmax(auto, 1fr)
-      minmax(auto, 1fr)
-      minmax(150px, 1fr)
-      minmax(150px, 1fr)
-      minmax(auto, 1fr)
-      minmax(auto, 1fr)
-      minmax(auto, 1fr);
-  }
-
-  thead,
-  tbody,
-  tr {
-    display: contents;
-  }
-
-  th,
-  td {
-    padding: 0.5em;
-  }
-
-  tr:nth-child(even) td {
-    background: var(--Off-White);
+      minmax(130px, 1fr)
+      minmax(170px, 1fr)
+      minmax(170px, 1fr)
+      minmax(100px, 1fr)
+      minmax(120px, 1fr)
+      minmax(120px, 1fr);
+    align-items: end;
   }
 
   @media screen and (max-width: 768px) {
