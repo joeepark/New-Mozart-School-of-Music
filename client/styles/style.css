@@ -29,7 +29,9 @@ html {
   --Yellow: #ffc926;
   --Red: #d00000;
   --Black: #000000;
-  --Navy-Blue: #286090;
+  --Blue: #003566;
+  --Dark-Blue: #001d3d;
+  --Darkest-Blue: #000814;
   --Grey: #494949;
   --Light-Grey: #9197b68e;
   --White: #ffffff;
@@ -53,13 +55,69 @@ a {
   cursor: pointer;
 }
 
+img {
+  cursor: pointer;
+}
+
 button {
   cursor: pointer;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  color: var(--White);
+  padding: 1em;
+  border: none;
+  border-radius: 0.3em;
 }
 
 button:active {
-  transform: translateY(1px);
+  transform: translateY(2.5px);
+}
+
+input {
+  padding: 1em;
+  border-radius: 0.3em;
+  outline: none;
+  border: 1px solid #ddd;
+  color: var(--Grey);
+}
+
+input:focus {
+  box-shadow: 0 1px 0 var(--Grey);
+}
+
+.submit-btn {
+  background-color: var(--Blue);
+}
+
+.cancel-btn {
+  background-color: var(--Light-Grey);
+}
+
+.submit-btn:active {
+  background-color: var(--Yellow);
+}
+
+.cancel-btn:active {
+  background-color: var(--Red);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--Light-Grey) var(--White);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--White);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--Light-Grey);
+  border-radius: 8px;
+  border: 5px none var(--Light-Grey);
 }
 
 .nav {
@@ -215,24 +273,7 @@ button:active {
 }
 .add-new .input-row button {
   margin-top: 1.5em;
-  height: 3em;
   width: 100%;
-  font-weight: 700;
-  color: var(--White);
-  border-radius: 0.3em;
-  border: none;
-}
-.add-new .input-row #submit-btn {
-  background-color: var(--Navy-Blue);
-}
-.add-new .input-row #cancel-btn {
-  background-color: var(--Light-Grey);
-}
-.add-new .input-row #submit-btn:active {
-  background-color: var(--Yellow);
-}
-.add-new .input-row #cancel-btn:active {
-  background-color: var(--Red);
 }
 .add-new .address {
   display: grid;
@@ -248,23 +289,15 @@ button:active {
   width: 100%;
   gap: 0.3em;
 }
-.add-new .input input {
-  height: 3em;
-  border-radius: 0.3em;
-  padding-left: 1em;
-  outline: none;
-  border: 1px solid #ddd;
-  color: var(--Grey);
-}
-.add-new .input input:focus {
-  box-shadow: 0 1px 0 var(--Grey);
-}
 @media screen and (max-width: 768px) {
   .add-new {
     margin: 115px 1em 1.5em;
   }
   .add-new .input-row {
     flex-direction: column;
+  }
+  .add-new .input-row button {
+    font-size: 1.5rem;
   }
   .add-new .address {
     grid-template-columns: repeat(1, 1fr);
@@ -279,6 +312,7 @@ button:active {
   background-color: var(--Off-White);
   font-size: 1.5rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 .calendar .teacher {
   display: flex;
@@ -286,9 +320,21 @@ button:active {
   padding: 1em;
   background-color: var(--White);
   font-size: 2rem;
+  gap: 1em;
 }
 .calendar .teacher-info p:not(:first-child) {
   margin-top: 0.5em;
+}
+.calendar select {
+  border: none;
+  border-radius: 0.3em;
+  text-align: center;
+  padding: 1em;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  outline: none;
+  background-color: var(--Darkest-Blue);
+  color: var(--White);
+  font-weight: 700;
 }
 .calendar .teacher-select {
   display: flex;
@@ -296,26 +342,11 @@ button:active {
   gap: 0.5em;
 }
 .calendar .teacher-select button {
+  background-color: var(--Blue);
   padding: 1em;
-  border: none;
-  border-radius: 0.3em;
-  background-color: var(--Navy-Blue);
-  color: var(--White);
-  font-weight: 700;
 }
 .calendar .teacher-select button:active {
   background-color: var(--Yellow);
-}
-.calendar .teacher-select select {
-  border: none;
-  border-radius: 0.3em;
-  text-align: center;
-  padding: 1em;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  outline: none;
-  background-color: #1c2b36;
-  color: var(--White);
-  font-weight: 700;
 }
 .calendar .teacher-select option {
   font-weight: 700;
@@ -325,9 +356,49 @@ button:active {
 }
 .calendar .create-schedule {
   display: none;
+  position: fixed;
+  background-color: white;
+  right: -265px;
+  top: 185px;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  padding: 2em;
+  border: 1px solid var(--Light-Grey);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-.calendar .create-schedule {
+.calendar .create-schedule form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+.calendar .create-schedule .input-container {
+  display: flex;
+  gap: 1em;
+}
+.calendar .create-schedule input {
+  padding: 0.5em;
+}
+.calendar .schedule-select-container {
+  display: flex;
+  gap: 1em;
+}
+.calendar .schedule-select-container select {
+  width: 100%;
+  text-align: center;
+  background-color: var(--Dark-Blue);
+  padding: 0.5em;
+}
+.calendar .schedule-select-container option:nth-child(1) {
   display: none;
+}
+.calendar .schedule-button-container {
+  display: flex;
+  gap: 1em;
+}
+.calendar .schedule-button-container button {
+  width: 100%;
+  box-shadow: none;
+  padding: 0.5em;
 }
 .calendar .rbc-btn-group > button {
   font-family: "Caladea", sans-serif;
@@ -339,6 +410,7 @@ button:active {
   border: 1px solid rgb(199, 199, 199);
   background-color: var(--White);
   padding: 2.5em;
+  z-index: 50;
 }
 .calendar .rbc-btn-group > .rbc-active,
 .calendar .rbc-btn-group > .rbc-active:focus-within {
@@ -376,59 +448,66 @@ button:active {
 .calendar .rbc-event,
 .calendar .rbc-event-content,
 .calendar .rbc-event.rbc-selected {
-  background-color: var(--Navy-Blue);
+  background-color: var(--Blue);
   border: none;
 }
 @media screen and (max-width: 768px) {
   .calendar {
     margin: 115px 1em 1.5em;
   }
+  .calendar .teacher {
+    flex-direction: column-reverse;
+  }
   .calendar .teacher-info {
     font-size: 1.6rem;
   }
   .calendar .teacher-select {
-    margin-left: 1em;
+    display: flex;
+    flex-direction: row;
   }
   .calendar .teacher-select button {
     font-size: 1.5rem;
+    width: 100%;
   }
   .calendar .teacher-select select {
     font-size: 1.5rem;
+    width: 100%;
   }
   .calendar .rbc-toolbar-label {
     margin: 0.5em 0;
   }
   .calendar .rbc-toolbar {
-    flex-direction: column;
     padding-top: 0.5em;
   }
   .calendar .rbc-calendar {
     padding: 1em;
   }
 }
+@media screen and (max-width: 550px) {
+  .calendar .rbc-toolbar {
+    flex-direction: column;
+  }
+}
 
-table thead,
-table tbody,
-table tr {
+.data-table table thead,
+.data-table table tbody,
+.data-table table tr {
   display: contents;
 }
-table th {
+.data-table table th {
   margin-bottom: 0.6em;
 }
-table td {
+.data-table table td {
   padding: 0.5em;
   height: 100%;
 }
-table tr:nth-child(even) td {
+.data-table table tr:nth-child(even) td {
   background-color: var(--Off-White);
 }
-table tbody tr:hover td {
+.data-table table tbody tr:hover td {
   background-color: var(--Light-Grey);
 }
-table .edit-buttons img {
-  cursor: pointer;
-}
-table .edit-buttons img:nth-child(1) {
+.data-table table .edit-buttons img:nth-child(1) {
   margin-right: 0.4em;
 }
 

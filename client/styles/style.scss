@@ -21,6 +21,7 @@ html {
   }
 }
 
+// General Styling
 :root {
   --Dark-Orange: #ffb048;
   --Light-Orange: #ffb656e9;
@@ -29,7 +30,9 @@ html {
   --Red: #d00000;
 
   --Black: #000000;
-  --Navy-Blue: #286090;
+  --Blue: #003566;
+  --Dark-Blue: #001d3d;
+  --Darkest-Blue: #000814;
   --Grey: #494949;
   --Light-Grey: #9197b68e;
 
@@ -54,13 +57,70 @@ a {
   cursor: pointer;
 }
 
+img {
+  cursor: pointer;
+}
+
 button {
   cursor: pointer;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  color: var(--White);
+  padding: 1em;
+  border: none;
+  border-radius: 0.3em;
 }
 
 button:active {
-  transform: translateY(1px);
+  transform: translateY(2.5px);
+}
+
+input {
+  padding: 1em;
+  border-radius: 0.3em;
+  outline: none;
+  border: 1px solid #ddd;
+  color: var(--Grey);
+}
+
+input:focus {
+  box-shadow: 0 1px 0 var(--Grey);
+}
+
+.submit-btn {
+  background-color: var(--Blue);
+}
+
+.cancel-btn {
+  background-color: var(--Light-Grey);
+}
+
+.submit-btn:active {
+  background-color: var(--Yellow);
+}
+
+.cancel-btn:active {
+  background-color: var(--Red);
+}
+
+// Scrollbar Styling
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--Light-Grey) var(--White);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--White);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--Light-Grey);
+  border-radius: 8px;
+  border: 5px none var(--Light-Grey);
 }
 
 // Navbar Styling
@@ -237,28 +297,7 @@ button:active {
 
     button {
       margin-top: 1.5em;
-      height: 3em;
       width: 100%;
-      font-weight: 700;
-      color: var(--White);
-      border-radius: 0.3em;
-      border: none;
-    }
-
-    #submit-btn {
-      background-color: var(--Navy-Blue);
-    }
-
-    #cancel-btn {
-      background-color: var(--Light-Grey);
-    }
-
-    #submit-btn:active {
-      background-color: var(--Yellow);
-    }
-
-    #cancel-btn:active {
-      background-color: var(--Red);
     }
   }
 
@@ -277,19 +316,6 @@ button:active {
     margin-top: 1em;
     width: 100%;
     gap: 0.3em;
-
-    input {
-      height: 3em;
-      border-radius: 0.3em;
-      padding-left: 1em;
-      outline: none;
-      border: 1px solid #ddd;
-      color: var(--Grey);
-    }
-
-    input:focus {
-      box-shadow: 0 1px 0 var(--Grey);
-    }
   }
 
   @media screen and (max-width: 768px) {
@@ -297,6 +323,10 @@ button:active {
 
     .input-row {
       flex-direction: column;
+
+      button {
+        font-size: 1.5rem;
+      }
     }
 
     .address {
@@ -315,6 +345,7 @@ button:active {
   background-color: var(--Off-White);
   font-size: 1.5rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
 
   .teacher {
     display: flex;
@@ -322,6 +353,7 @@ button:active {
     padding: 1em;
     background-color: var(--White);
     font-size: 2rem;
+    gap: 1em;
   }
 
   .teacher-info {
@@ -330,35 +362,32 @@ button:active {
     }
   }
 
+  select {
+    border: none;
+    border-radius: 0.3em;
+    text-align: center;
+    padding: 1em;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    outline: none;
+    background-color: var(--Darkest-Blue);
+    color: var(--White);
+    font-weight: 700;
+  }
+
   .teacher-select {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 
     button {
+      background-color: var(--Blue);
       padding: 1em;
-      border: none;
-      border-radius: 0.3em;
-      background-color: var(--Navy-Blue);
-      color: var(--White);
-      font-weight: 700;
     }
 
     button:active {
       background-color: var(--Yellow);
     }
 
-    select {
-      border: none;
-      border-radius: 0.3em;
-      text-align: center;
-      padding: 1em;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      outline: none;
-      background-color: #1c2b36;
-      color: var(--White);
-      font-weight: 700;
-    }
     option {
       font-weight: 700;
     }
@@ -370,10 +399,57 @@ button:active {
 
   .create-schedule {
     display: none;
+    position: fixed;
+    background-color: white;
+    right: -265px;
+    top: 185px;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    padding: 2em;
+    border: 1px solid var(--Light-Grey);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 1em;
+    }
+
+    input {
+      padding: 0.5em;
+    }
   }
 
-  .create-schedule {
-    display: none;
+  .schedule-select-container {
+    display: flex;
+    gap: 1em;
+
+    select {
+      width: 100%;
+      text-align: center;
+      background-color: var(--Dark-Blue);
+      padding: 0.5em;
+    }
+
+    option:nth-child(1) {
+      display: none;
+    }
+  }
+
+  .schedule-button-container {
+    display: flex;
+    gap: 1em;
+
+    button {
+      width: 100%;
+      box-shadow: none;
+      padding: 0.5em;
+    }
   }
 
   .rbc-btn-group > button {
@@ -387,6 +463,7 @@ button:active {
     border: 1px solid rgb(199, 199, 199);
     background-color: var(--White);
     padding: 2.5em;
+    z-index: 50;
   }
 
   .rbc-btn-group > .rbc-active,
@@ -433,25 +510,32 @@ button:active {
   .rbc-event,
   .rbc-event-content,
   .rbc-event.rbc-selected {
-    background-color: var(--Navy-Blue);
+    background-color: var(--Blue);
     border: none;
   }
 
   @media screen and (max-width: 768px) {
     margin: 115px 1em 1.5em;
 
+    .teacher {
+      flex-direction: column-reverse;
+    }
+
     .teacher-info {
       font-size: 1.6rem;
     }
 
     .teacher-select {
-      margin-left: 1em;
+      display: flex;
+      flex-direction: row;
 
       button {
         font-size: 1.5rem;
+        width: 100%;
       }
       select {
         font-size: 1.5rem;
+        width: 100%;
       }
     }
 
@@ -460,7 +544,6 @@ button:active {
     }
 
     .rbc-toolbar {
-      flex-direction: column;
       padding-top: 0.5em;
     }
 
@@ -468,39 +551,43 @@ button:active {
       padding: 1em;
     }
   }
+
+  @media screen and (max-width: 550px) {
+    .rbc-toolbar {
+      flex-direction: column;
+    }
+  }
 }
 
 // Table Data Styling
-table {
-  thead,
-  tbody,
-  tr {
-    display: contents;
-  }
+.data-table {
+  table {
+    thead,
+    tbody,
+    tr {
+      display: contents;
+    }
 
-  th {
-    margin-bottom: 0.6em;
-  }
+    th {
+      margin-bottom: 0.6em;
+    }
 
-  td {
-    padding: 0.5em;
-    height: 100%;
-  }
+    td {
+      padding: 0.5em;
+      height: 100%;
+    }
 
-  tr:nth-child(even) td {
-    background-color: var(--Off-White);
-  }
+    tr:nth-child(even) td {
+      background-color: var(--Off-White);
+    }
 
-  tbody tr:hover td {
-    background-color: var(--Light-Grey);
-  }
+    tbody tr:hover td {
+      background-color: var(--Light-Grey);
+    }
 
-  .edit-buttons img {
-    cursor: pointer;
-  }
-
-  .edit-buttons img:nth-child(1) {
-    margin-right: 0.4em;
+    .edit-buttons img:nth-child(1) {
+      margin-right: 0.4em;
+    }
   }
 }
 

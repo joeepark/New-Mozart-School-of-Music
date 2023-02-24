@@ -96,11 +96,11 @@ function AddNewStudents() {
           </div>
         </div>
         <div className="input-row">
-          <button id="cancel-btn" onClick={handleCancelClick}>
-            Cancel
-          </button>
-          <button type="submit" id="submit-btn">
+          <button type="submit" className="submit-btn">
             Submit
+          </button>
+          <button type="button" className="cancel-btn" onClick={handleCancelClick}>
+            Cancel
           </button>
         </div>
       </form>

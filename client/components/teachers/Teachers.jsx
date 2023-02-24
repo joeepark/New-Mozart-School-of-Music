@@ -7,20 +7,9 @@ import Image from 'next/image';
 
 function Teachers() {
   const { teachers } = useContext(DataContext);
-  teachers.sort(function (a, b) {
-    const firstNameA = a.first_name.toUpperCase();
-    const firstNameB = b.first_name.toUpperCase();
-    if (firstNameA < firstNameB) {
-      return -1;
-    }
-    if (firstNameA > firstNameB) {
-      return 1;
-    }
-    return 0;
-  });
 
   return (
-    <section className="data-table-teachers">
+    <section className="data-table-teachers data-table">
       {teachers ? (
         <table>
           <thead>

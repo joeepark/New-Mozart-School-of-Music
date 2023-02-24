@@ -6,6 +6,7 @@ export const DataProvider = ({ children }) => {
   // const [overview, setOverview] = useState([]);
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
+  const [classrooms, setClassrooms] = useState([]);
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
@@ -16,13 +17,15 @@ export const DataProvider = ({ children }) => {
             // fetch('/api/overview'),
             fetch('/api/students'),
             fetch('/api/teachers'),
+            fetch('/api/classrooms'),
             fetch('/api/schedules'),
           ])
         ).map((res) => res.json());
-        const [students, teachers, schedules] = await Promise.all(response);
+        const [students, teachers, classrooms, schedules] = await Promise.all(response);
         // setOverview(overview);
         setStudents(students);
         setTeachers(teachers);
+        setClassrooms(classrooms);
         setSchedules(schedules);
       } catch (err) {
         console.error({ error: err.message });
@@ -33,11 +36,46 @@ export const DataProvider = ({ children }) => {
     // JSON.stringify(overview),
     JSON.stringify(students),
     JSON.stringify(teachers),
+    JSON.stringify(classrooms),
     JSON.stringify(schedules),
   ]);
 
-  // Submit Functions
+  // Sort Data in ABC order
+  students.sort(function (a, b) {
+    const firstNameA = a.first_name.toUpperCase();
+    const firstNameB = b.first_name.toUpperCase();
+    if (firstNameA < firstNameB) {
+      return -1;
+    }
+    if (firstNameA > firstNameB) {
+      return 1;
+    }
+    return 0;
+  });
+  teachers.sort(function (a, b) {
+    const firstNameA = a.first_name.toUpperCase();
+    const firstNameB = b.first_name.toUpperCase();
+    if (firstNameA < firstNameB) {
+      return -1;
+    }
+    if (firstNameA > firstNameB) {
+      return 1;
+    }
+    return 0;
+  });
+  classrooms.sort(function (a, b) {
+    const firstNameA = a.room_name.toUpperCase();
+    const firstNameB = b.room_name.toUpperCase();
+    if (firstNameA < firstNameB) {
+      return -1;
+    }
+    if (firstNameA > firstNameB) {
+      return 1;
+    }
+    return 0;
+  });
 
+  // Submit Functions
   // const handleOverviewSubmit = async (event) => {
   //   event.preventDefault();
   //   const formData = new FormData(event.target);
@@ -145,19 +183,18 @@ export const DataProvider = ({ children }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const date = formData.get('date');
-    const startTime = formData.get('start_time');
-    const endTime = formData.get('end_time');
-    const studentId = formData.get('student_id');
-    const teacherId = formData.get('teacher_id');
-    const classroomId = formData.get('classroom_id');
+    const start_time = formData.get('start_time');
+    const end_time = formData.get('end_time');
+    const student_id = formData.get('student_id');
+    const teacher_id = formData.get('teacher_id');
+    const classroom_id = formData.get('classroom_id');
 
     const scheduleData = {
-      date: date,
-      start_time: startTime,
-      end_time: endTime,
-      student_id: studentId,
-      teacher_id: teacherId,
-      classroom_id: classroomId,
+      start_time: `${new Date(`${date} ${start_time}`).toISOString()}`,
+      end_time: `${new Date(`${date} ${end_time}`).toISOString()}`,
+      student_id: student_id,
+      teacher_id: teacher_id,
+      classroom_id: classroom_id,
     };
 
     const jsonData = JSON.stringify(scheduleData);
@@ -233,6 +270,7 @@ export const DataProvider = ({ children }) => {
         // overview,
         students,
         teachers,
+        classrooms,
         schedules,
         // handleOverviewSubmit,
         handleScheduleSubmit,
