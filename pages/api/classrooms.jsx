@@ -14,8 +14,9 @@ async function classrooms(req, res) {
 
 async function getClassrooms(req, res) {
   try {
-    const { data } = await supabase.from('classrooms').select('*');
-    return res.status(200).json(data);
+    const { data: classrooms, error } = await supabase.from('classrooms').select('*');
+    if (error) console.error(error);
+    return res.status(200).json(classrooms);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

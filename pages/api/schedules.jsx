@@ -14,7 +14,7 @@ async function schedules(req, res) {
 
 async function getSchedules(req, res) {
   try {
-    const { data } = await supabase.from('schedules').select(`
+    const { data: schedules, error } = await supabase.from('schedules').select(`
     *,
     students (
       first_name,
@@ -28,7 +28,8 @@ async function getSchedules(req, res) {
       last_name
     )
   `);
-    return res.status(200).json(data);
+    if (error) console.error(error);
+    return res.status(200).json(schedules);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -39,7 +40,7 @@ async function addSchedules(req, res) {
     const jsonData = req.body;
     const scheduleData = JSON.parse(jsonData);
     const { start_time, end_time, student_id, teacher_id, classroom_id } = scheduleData;
-    const { data } = await supabase
+    const { data: schedules, error } = await supabase
       .from('schedules')
       .insert([
         {
@@ -51,7 +52,8 @@ async function addSchedules(req, res) {
         },
       ])
       .select();
-    return res.status(200).json(data);
+    if (error) console.error(error);
+    return res.status(200).json(schedules);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

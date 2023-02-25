@@ -1,8 +1,8 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import DataContext from '/client/context/DataContext';
 
-function CreateSchedule({ selectedTeacher }) {
-  const { students, classrooms, handleScheduleSubmit } = useContext(DataContext);
+function CreateSchedule({ selectedClassroom }) {
+  const { students, teachers, handleScheduleSubmit } = useContext(DataContext);
   const formRef = useRef(null);
 
   function handleClick() {
@@ -13,33 +13,23 @@ function CreateSchedule({ selectedTeacher }) {
     <div className="create-schedule" ref={formRef}>
       <form method="post" action="/api/schedules" onSubmit={handleScheduleSubmit}>
         <div className="schedule-select-container">
-          <input type="hidden" name="teacher_id" value={selectedTeacher.id} />
-          {/* <select>
-              <option>Pick a teacher:</option>
-              {teachers.map((teacher) => {
-                return (
-                  <option key={teacher.id}>
-                    {teacher.first_name} {teacher.last_name}
-                  </option>
-                );
-              })}
-            </select> */}
+          <input type="hidden" name="classroom_id" value={selectedClassroom.id} />
+          <select name="teacher_id">
+            <option>Pick a teacher:</option>
+            {teachers.map((teacher) => {
+              return (
+                <option key={teacher.id} value={teacher.id}>
+                  {teacher.first_name} {teacher.last_name}
+                </option>
+              );
+            })}
+          </select>
           <select name="student_id">
             <option>Pick a student:</option>
             {students.map((student) => {
               return (
                 <option key={student.id} value={student.id}>
                   {student.first_name} {student.last_name}
-                </option>
-              );
-            })}
-          </select>
-          <select name="classroom_id">
-            <option>Pick a classroom:</option>
-            {classrooms.map((classroom) => {
-              return (
-                <option key={classroom.id} value={classroom.id}>
-                  {classroom.room_name}
                 </option>
               );
             })}
@@ -60,7 +50,7 @@ function CreateSchedule({ selectedTeacher }) {
           </div>
         </div>
         <div className="schedule-button-container">
-          <button type="submit" className="submit-btn" onClick={handleClick}>
+          <button type="submit" className="submit-btn">
             Submit
           </button>
           <button type="button" className="cancel-btn" onClick={handleClick}>

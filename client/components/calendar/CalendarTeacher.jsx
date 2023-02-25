@@ -4,7 +4,7 @@ import 'moment-timezone';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import DataContext from '/client/context/DataContext';
 import { useContext, useState, useRef, useEffect, useCallback } from 'react';
-import CreateSchedule from '/client/components/calendar/CreateSchedule';
+import CreateTeacherSchedule from '/client/components/calendar/CreateTeacherSchedule';
 
 function CalendarTeacher() {
   const { schedules, teachers } = useContext(DataContext);
@@ -12,8 +12,30 @@ function CalendarTeacher() {
   const clickRef = useRef(null);
   const localizer = momentLocalizer(moment);
 
+  // Calendar built-in functions
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(clickRef?.current);
+    };
+  }, []);
+
+  const onSelectEvent = useCallback((calEvent) => {
+    window.clearTimeout(clickRef?.current);
+    clickRef.current = window.setTimeout(() => {
+      console.log(calEvent);
+    }, 250);
+  }, []);
+
+  const onDoubleClickEvent = useCallback((calEvent) => {
+    window.clearTimeout(clickRef?.current);
+    clickRef.current = window.setTimeout(() => {
+      alert(calEvent, 'onDoubleClickEvent');
+    }, 250);
+  }, []);
+
+  // Scheduling and event functions
   const filteredSchedules = schedules?.filter((schedule) => {
-    return schedule['teacher_id'] === selectedTeacher.id;
+    return schedule?.['teacher_id'] === selectedTeacher.id;
   });
 
   const slicedTime = (time) => {
@@ -26,14 +48,16 @@ function CalendarTeacher() {
 
   const events = filteredSchedules?.map((schedule) => {
     return {
-      title: `${schedule.students.first_name} ${schedule.students.last_name} - ${slicedTime(
-        new Date(schedule.start_time).toLocaleTimeString()
+      id: schedule?.id,
+      title: `${schedule?.students.first_name} ${schedule?.students.last_name} - ${slicedTime(
+        new Date(schedule?.start_time).toLocaleTimeString()
       )}`,
-      start: new Date(`${schedule.start_time}`),
-      end: new Date(`${schedule.end_time}`),
+      start: new Date(`${schedule?.start_time}`),
+      end: new Date(`${schedule?.end_time}`),
     };
   });
 
+  // Button handling functions
   const handleChange = (event) => {
     const selectedTeacherName = event.target.value;
     const selectedTeacherObj = teachers.find((teacher) => {
@@ -46,26 +70,6 @@ function CalendarTeacher() {
     let popup = document.querySelector('.create-schedule');
     popup.style.display = 'block';
   }
-
-  useEffect(() => {
-    return () => {
-      window.clearTimeout(clickRef?.current);
-    };
-  }, []);
-
-  const onSelectEvent = useCallback((calEvent) => {
-    window.clearTimeout(clickRef?.current);
-    clickRef.current = window.setTimeout(() => {
-      window.alert(onSelectEvent);
-    }, 250);
-  }, []);
-
-  const onDoubleClickEvent = useCallback((calEvent) => {
-    window.clearTimeout(clickRef?.current);
-    clickRef.current = window.setTimeout(() => {
-      alert(onDoubleClickEvent);
-    }, 250);
-  }, []);
 
   return (
     <section className="calendar">
@@ -111,7 +115,7 @@ function CalendarTeacher() {
         onDoubleClickEvent={onDoubleClickEvent}
         onSelectEvent={onSelectEvent}
       />
-      <CreateSchedule selectedTeacher={selectedTeacher} />
+      <CreateTeacherSchedule selectedTeacher={selectedTeacher} />
     </section>
   );
 }

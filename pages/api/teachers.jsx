@@ -16,8 +16,9 @@ async function teachers(req, res) {
 
 async function getTeachers(req, res) {
   try {
-    const { data } = await supabase.from('teachers').select('*');
-    return res.status(200).json(data);
+    const { data: teachers, error } = await supabase.from('teachers').select('*');
+    if (error) console.error(error);
+    return res.status(200).json(teachers);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -29,7 +30,7 @@ async function addTeacher(req, res) {
     const teacherData = JSON.parse(jsonData);
     const { first_name, last_name, email, phone_number, instruments, studio_policies, zoom_link } =
       teacherData;
-    const { data } = await supabase
+    const { data: teachers, error } = await supabase
       .from('teachers')
       .insert([
         {
@@ -43,7 +44,8 @@ async function addTeacher(req, res) {
         },
       ])
       .select();
-    return res.status(200).json(data);
+    if (error) console.error(error);
+    return res.status(200).json(teachers);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -52,8 +54,9 @@ async function addTeacher(req, res) {
 async function deleteTeacher(req, res) {
   try {
     const id = req.body;
-    const { data } = await supabase.from('teachers').delete().eq('id', id);
-    return res.status(200).json(data);
+    const { data: teachers, error } = await supabase.from('teachers').delete().eq('id', id);
+    if (error) console.error(error);
+    return res.status(200).json(teachers);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

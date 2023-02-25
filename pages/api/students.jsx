@@ -16,8 +16,9 @@ async function students(req, res) {
 
 async function getStudents(req, res) {
   try {
-    const { data } = await supabase.from('students').select('*');
-    return res.status(200).json(data);
+    const { data: students, error } = await supabase.from('students').select('*');
+    if (error) console.error(error);
+    return res.status(200).json(students);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -39,7 +40,7 @@ async function addStudent(req, res) {
       state_address,
       zip_address,
     } = studentData;
-    const { data } = await supabase
+    const { data: students, error } = await supabase
       .from('students')
       .insert([
         {
@@ -56,7 +57,8 @@ async function addStudent(req, res) {
         },
       ])
       .select();
-    return res.status(200).json(data);
+    if (error) console.error(error);
+    return res.status(200).json(students);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -75,8 +77,9 @@ async function updateStudent(req, res) {
 async function deleteStudent(req, res) {
   try {
     const id = req.body;
-    const { data } = await supabase.from('students').delete().eq('id', id);
-    return res.status(200).json(data);
+    const { data: students, error } = await supabase.from('students').delete().eq('id', id);
+    if (error) console.error(error);
+    return res.status(200).json(students);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

@@ -40,42 +40,47 @@ export const DataProvider = ({ children }) => {
     JSON.stringify(schedules),
   ]);
 
-  // Sort Data in ABC order
-  students.sort(function (a, b) {
-    const firstNameA = a.first_name.toUpperCase();
-    const firstNameB = b.first_name.toUpperCase();
-    if (firstNameA < firstNameB) {
-      return -1;
-    }
-    if (firstNameA > firstNameB) {
-      return 1;
-    }
-    return 0;
-  });
-  teachers.sort(function (a, b) {
-    const firstNameA = a.first_name.toUpperCase();
-    const firstNameB = b.first_name.toUpperCase();
-    if (firstNameA < firstNameB) {
-      return -1;
-    }
-    if (firstNameA > firstNameB) {
-      return 1;
-    }
-    return 0;
-  });
-  classrooms.sort(function (a, b) {
-    const firstNameA = a.room_name.toUpperCase();
-    const firstNameB = b.room_name.toUpperCase();
-    if (firstNameA < firstNameB) {
-      return -1;
-    }
-    if (firstNameA > firstNameB) {
-      return 1;
-    }
-    return 0;
-  });
-
-  // Submit Functions
+  // Sort data in ABC order
+  if (students.length > 2) {
+    students.sort(function (a, b) {
+      const firstNameA = a.first_name.toUpperCase();
+      const firstNameB = b.first_name.toUpperCase();
+      if (firstNameA < firstNameB) {
+        return -1;
+      }
+      if (firstNameA > firstNameB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (teachers.length > 2) {
+    teachers.sort(function (a, b) {
+      const firstNameA = a?.first_name.toUpperCase();
+      const firstNameB = b?.first_name.toUpperCase();
+      if (firstNameA < firstNameB) {
+        return -1;
+      }
+      if (firstNameA > firstNameB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (classrooms.length > 2) {
+    classrooms.sort(function (a, b) {
+      const firstNameA = a?.room_name.toUpperCase();
+      const firstNameB = b?.room_name.toUpperCase();
+      if (firstNameA < firstNameB) {
+        return -1;
+      }
+      if (firstNameA > firstNameB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  // Submit functions
   // const handleOverviewSubmit = async (event) => {
   //   event.preventDefault();
   //   const formData = new FormData(event.target);
@@ -181,17 +186,20 @@ export const DataProvider = ({ children }) => {
 
   const handleScheduleSubmit = async (event) => {
     event.preventDefault();
+    let popup = document.querySelector('.create-schedule');
+    popup.style.display = 'none';
+
     const formData = new FormData(event.target);
     const date = formData.get('date');
-    const start_time = formData.get('start_time');
-    const end_time = formData.get('end_time');
+    let start_time = formData.get('start_time');
+    let end_time = formData.get('end_time');
     const student_id = formData.get('student_id');
     const teacher_id = formData.get('teacher_id');
     const classroom_id = formData.get('classroom_id');
 
     const scheduleData = {
-      start_time: `${new Date(`${date} ${start_time}`).toISOString()}`,
-      end_time: `${new Date(`${date} ${end_time}`).toISOString()}`,
+      start_time: new Date(`${date} ${start_time}`),
+      end_time: new Date(`${date} ${end_time}`),
       student_id: student_id,
       teacher_id: teacher_id,
       classroom_id: classroom_id,
@@ -214,7 +222,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  // Update Functions
+  // Update functions
   const handleStudentUpdate = async () => {
     try {
       const response = await fetch(`/api/students`, {
@@ -231,7 +239,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  // Delete Functions
+  // Delete functions
   const handleStudentDelete = async (id) => {
     try {
       const response = await fetch(`/api/students`, {
