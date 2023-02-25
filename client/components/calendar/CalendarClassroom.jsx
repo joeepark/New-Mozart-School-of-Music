@@ -1,11 +1,11 @@
-import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment-timezone';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import DataContext from '/client/context/DataContext';
-import { useContext, useState, useRef, useEffect, useCallback } from 'react';
+import EditClassroomSchedule from './EditClassroomSchedule';
 import CreateClassroomSchedule from '/client/components/calendar/CreateClassroomSchedule';
-import EditSchedule from './EditSchedule';
+import DataContext from '/client/context/DataContext';
 
 function CalendarClassroom() {
   const { schedules, classrooms } = useContext(DataContext);
@@ -25,14 +25,9 @@ function CalendarClassroom() {
     window.clearTimeout(clickRef?.current);
     clickRef.current = window.setTimeout(() => {
       setSelectedEvent(calEvent);
-    }, 250);
-  }, []);
-
-  const onDoubleClickEvent = useCallback((calEvent) => {
-    window.clearTimeout(clickRef?.current);
-    clickRef.current = window.setTimeout(() => {
-      setSelectedEvent(calEvent);
-    }, 250);
+      let popup = document.querySelector('.schedule-edit-container');
+      if (popup) popup.style.display = 'block';
+    }, 0);
   }, []);
 
   // Scheduling and event functions
@@ -82,7 +77,7 @@ function CalendarClassroom() {
 
   return (
     <section className="calendar">
-      <div className="teacher">
+      <div className="classroom">
         <div className="teacher-select">
           <select className="teacher-select-btn" onChange={handleChange}>
             <option>Pick a room:</option>
@@ -90,7 +85,9 @@ function CalendarClassroom() {
               return <option key={classroom.id}>{classroom.room_name}</option>;
             })}
           </select>
-          <button onClick={handleClick}>Create Schedule</button>
+          <button onClick={handleClick} className="create-schedule-btn">
+            Create Schedule
+          </button>
         </div>
       </div>
 
@@ -104,11 +101,10 @@ function CalendarClassroom() {
         min={new Date(2023, 1, 0, 9, 0, 0)}
         max={new Date(2023, 1, 0, 21, 0, 0)}
         popup
-        onDoubleClickEvent={onDoubleClickEvent}
         onSelectEvent={onSelectEvent}
       />
       <CreateClassroomSchedule selectedClassroom={selectedClassroom} />
-      {selectedEvent && <EditSchedule selectedEvent={selectedEvent} />}
+      {selectedEvent && <EditClassroomSchedule selectedEvent={selectedEvent} />}
     </section>
   );
 }

@@ -1,14 +1,16 @@
-import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment-timezone';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import DataContext from '/client/context/DataContext';
-import { useContext, useState, useRef, useEffect, useCallback } from 'react';
+import EditTeacherSchedule from './EditTeacherSchedule';
 import CreateTeacherSchedule from '/client/components/calendar/CreateTeacherSchedule';
+import DataContext from '/client/context/DataContext';
 
 function CalendarTeacher() {
   const { schedules, teachers } = useContext(DataContext);
   const [selectedTeacher, setSelectedTeacher] = useState({});
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const clickRef = useRef(null);
   const localizer = momentLocalizer(moment);
 
@@ -22,15 +24,10 @@ function CalendarTeacher() {
   const onSelectEvent = useCallback((calEvent) => {
     window.clearTimeout(clickRef?.current);
     clickRef.current = window.setTimeout(() => {
-      console.log(calEvent);
-    }, 250);
-  }, []);
-
-  const onDoubleClickEvent = useCallback((calEvent) => {
-    window.clearTimeout(clickRef?.current);
-    clickRef.current = window.setTimeout(() => {
-      alert(calEvent, 'onDoubleClickEvent');
-    }, 250);
+      setSelectedEvent(calEvent);
+      let popup = document.querySelector('.schedule-edit-container');
+      if (popup) popup.style.display = 'block';
+    }, 0);
   }, []);
 
   // Scheduling and event functions
@@ -54,6 +51,13 @@ function CalendarTeacher() {
       )}`,
       start: new Date(`${schedule?.start_time}`),
       end: new Date(`${schedule?.end_time}`),
+      resource: {
+        student_first_name: schedule?.students.first_name,
+        student_last_name: schedule?.students.last_name,
+        teacher_first_name: schedule?.teachers.first_name,
+        teacher_last_name: schedule?.teachers.last_name,
+        classroom_name: schedule?.classrooms.room_name,
+      },
     };
   });
 
@@ -98,7 +102,9 @@ function CalendarTeacher() {
               );
             })}
           </select>
-          <button onClick={handleClick}>Create Schedule</button>
+          <button onClick={handleClick} className="create-schedule-btn">
+            Create Schedule
+          </button>
         </div>
       </div>
 
@@ -112,10 +118,10 @@ function CalendarTeacher() {
         min={new Date(2023, 1, 0, 9, 0, 0)}
         max={new Date(2023, 1, 0, 21, 0, 0)}
         popup
-        onDoubleClickEvent={onDoubleClickEvent}
         onSelectEvent={onSelectEvent}
       />
       <CreateTeacherSchedule selectedTeacher={selectedTeacher} />
+      {selectedEvent && <EditTeacherSchedule selectedEvent={selectedEvent} />}
     </section>
   );
 }

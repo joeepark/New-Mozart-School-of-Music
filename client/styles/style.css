@@ -322,6 +322,13 @@ input:focus {
   font-size: 2rem;
   gap: 1em;
 }
+.calendar .classroom {
+  display: flex;
+  justify-content: end;
+  padding: 1em;
+  background-color: var(--White);
+  font-size: 2rem;
+}
 .calendar .teacher-info p:not(:first-child) {
   margin-top: 0.5em;
 }
@@ -337,15 +344,14 @@ input:focus {
   font-weight: 700;
 }
 .calendar .teacher-select {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
+  margin-top: auto;
 }
-.calendar .teacher-select button {
+.calendar .teacher-select .create-schedule-btn {
   background-color: var(--Blue);
   padding: 1em;
+  margin-left: 0.5em;
 }
-.calendar .teacher-select button:active {
+.calendar .teacher-select .create-schedule-btn:active {
   background-color: var(--Yellow);
 }
 .calendar .teacher-select option {
@@ -399,6 +405,19 @@ input:focus {
   width: 100%;
   box-shadow: none;
   padding: 0.5em;
+}
+.calendar .schedule-edit {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  background-color: white;
+  right: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  padding: 2em;
+  border: 1px solid var(--Light-Grey);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 .calendar .rbc-btn-group > button {
   font-family: "Caladea", sans-serif;
