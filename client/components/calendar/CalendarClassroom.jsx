@@ -77,11 +77,11 @@ function CalendarClassroom() {
 
   return (
     <section className="calendar">
-      <div className="classroom">
+      <div className="calendar-header">
         <div className="teacher-select">
           <select className="teacher-select-btn" onChange={handleChange}>
             <option>Pick a room:</option>
-            {classrooms.map((classroom) => {
+            {classrooms?.map((classroom) => {
               return <option key={classroom.id}>{classroom.room_name}</option>;
             })}
           </select>

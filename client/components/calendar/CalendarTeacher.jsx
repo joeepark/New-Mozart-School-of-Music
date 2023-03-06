@@ -77,21 +77,8 @@ function CalendarTeacher() {
 
   return (
     <section className="calendar">
-      <div className="teacher">
-        {selectedTeacher ? (
-          <div className="teacher-info">
-            <p>Instruments: {selectedTeacher.instruments}</p>
-            <p>Studio Policies: {selectedTeacher.studio_policies}</p>
-            <p>Zoom Link: {selectedTeacher.zoom_link}</p>
-          </div>
-        ) : (
-          <div className="teacher-info">
-            <p>Instruments: </p>
-            <p>Studio Policies: </p>
-            <p>Zoom Link: </p>
-          </div>
-        )}
-        <div className="teacher-select">
+      <div className="calendar-header">
+      <div className="teacher-select">
           <select className="teacher-select-btn" onChange={handleChange}>
             <option>Pick a teacher:</option>
             {teachers.map((teacher) => {
@@ -106,6 +93,19 @@ function CalendarTeacher() {
             Create Schedule
           </button>
         </div>
+        {selectedTeacher ? (
+          <div className="teacher-info">
+            <p>Instruments: {selectedTeacher.instruments}</p>
+            <p>Studio Policies: {selectedTeacher.studio_policies}</p>
+            <p>Zoom Link: {selectedTeacher.zoom_link}</p>
+          </div>
+        ) : (
+          <div className="teacher-info">
+            <p>Instruments: </p>
+            <p>Studio Policies: </p>
+            <p>Zoom Link: </p>
+          </div>
+        )}
       </div>
 
       <Calendar

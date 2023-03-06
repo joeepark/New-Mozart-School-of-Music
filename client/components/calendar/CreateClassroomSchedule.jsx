@@ -16,7 +16,7 @@ function CreateSchedule({ selectedClassroom }) {
           <input type="hidden" name="classroom_id" value={selectedClassroom.id} />
           <select name="teacher_id">
             <option>Pick a teacher:</option>
-            {teachers.map((teacher) => {
+            {teachers?.map((teacher) => {
               return (
                 <option key={teacher.id} value={teacher.id}>
                   {teacher.first_name} {teacher.last_name}
@@ -26,7 +26,7 @@ function CreateSchedule({ selectedClassroom }) {
           </select>
           <select name="student_id">
             <option>Pick a student:</option>
-            {students.map((student) => {
+            {students?.map((student) => {
               return (
                 <option key={student.id} value={student.id}>
                   {student.first_name} {student.last_name}

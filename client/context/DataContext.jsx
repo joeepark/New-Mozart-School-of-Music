@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  // const [overview, setOverview] = useState([]);
+  const [home, setHome] = useState([]);
   const [students, setStudents] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
       try {
         const response = (
           await Promise.all([
-            // fetch('/api/overview'),
+            // fetch('/api/home'),
             fetch('/api/students'),
             fetch('/api/teachers'),
             fetch('/api/classrooms'),
@@ -22,7 +22,7 @@ export const DataProvider = ({ children }) => {
           ])
         ).map((res) => res.json());
         const [students, teachers, classrooms, schedules] = await Promise.all(response);
-        // setOverview(overview);
+        // setOverview(home);
         setStudents(students);
         setTeachers(teachers);
         setClassrooms(classrooms);
@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
     };
     fetchData();
   }, [
-    // JSON.stringify(overview),
+    // JSON.stringify(home),
     JSON.stringify(students),
     JSON.stringify(teachers),
     JSON.stringify(classrooms),
@@ -41,8 +41,14 @@ export const DataProvider = ({ children }) => {
   ]);
 
   // Sort data in ABC order
-  if (students.length > 2) {
+  if (students) {
     students.sort(function (a, b) {
+      if (Array.isArray(a)) {
+        a = a[0];
+      }
+      if (Array.isArray(b)) {
+        b = b[0];
+      }
       const firstNameA = a.first_name.toUpperCase();
       const firstNameB = b.first_name.toUpperCase();
       if (firstNameA < firstNameB) {
@@ -54,10 +60,16 @@ export const DataProvider = ({ children }) => {
       return 0;
     });
   }
-  if (teachers.length > 2) {
+  if (teachers) {
     teachers.sort(function (a, b) {
-      const firstNameA = a?.first_name.toUpperCase();
-      const firstNameB = b?.first_name.toUpperCase();
+      if (Array.isArray(a)) {
+        a = a[0];
+      }
+      if (Array.isArray(b)) {
+        b = b[0];
+      }
+      const firstNameA = a.first_name.toUpperCase();
+      const firstNameB = b.first_name.toUpperCase();
       if (firstNameA < firstNameB) {
         return -1;
       }
@@ -67,10 +79,16 @@ export const DataProvider = ({ children }) => {
       return 0;
     });
   }
-  if (classrooms.length > 2) {
+  if (classrooms) {
     classrooms.sort(function (a, b) {
-      const firstNameA = a?.room_name.toUpperCase();
-      const firstNameB = b?.room_name.toUpperCase();
+      if (Array.isArray(a)) {
+        a = a[0];
+      }
+      if (Array.isArray(b)) {
+        b = b[0];
+      }
+      const firstNameA = a.room_name.toUpperCase();
+      const firstNameB = b.room_name.toUpperCase();
       if (firstNameA < firstNameB) {
         return -1;
       }
@@ -80,6 +98,7 @@ export const DataProvider = ({ children }) => {
       return 0;
     });
   }
+
   // Submit functions
   // const handleOverviewSubmit = async (event) => {
   //   event.preventDefault();
@@ -275,7 +294,7 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
-        // overview,
+        home,
         students,
         teachers,
         classrooms,

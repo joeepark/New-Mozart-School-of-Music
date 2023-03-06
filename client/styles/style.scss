@@ -5,18 +5,17 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {
   font-size: 62.5%;
-  box-sizing: border-box;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 768px) {
     font-size: 56.25%;
   }
 
-  @media screen and (max-width: 820px) {
+  @media screen and (max-width: 400px) {
     font-size: 50%;
   }
 }
@@ -253,32 +252,27 @@ input:focus {
 }
 
 // Home Styling
-.overview {
+.home {
   margin: 1em 1em 1em 210px;
   display: flex;
-  flex-wrap: wrap;
   gap: 2em;
   text-align: center;
 
   div {
-    width: 100%;
+    width: 50%;
+    height: 300px;
     padding: 1em;
     background-color: var(--White);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-
-    p {
-      margin-top: 1em;
-    }
-  }
-
-  input {
-    width: 100%;
-    border: none;
-    text-align: center;
   }
 
   @media screen and (max-width: 768px) {
     margin: 115px 1em 1.5em;
+    flex-direction: column;
+
+    div {
+      width: 100%;
+    }
   }
 }
 
@@ -347,28 +341,17 @@ input:focus {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   position: relative;
 
-  .teacher {
-    display: flex;
-    justify-content: space-between;
+  .calendar-header {
+    // display: flex;
+    // justify-content: space-between;
     padding: 1em;
     background-color: var(--White);
     font-size: 2rem;
     gap: 1em;
   }
 
-  .classroom {
-    display: flex;
-    // align-items: flex-end;
-    // justify-content: space-between;
-    justify-content: end;
-    padding: 1em;
-    background-color: var(--White);
-    font-size: 2rem;
-    // gap: 1em;
-  }
-
   .teacher-info {
-    p:not(:first-child) {
+    p {
       margin-top: 0.5em;
     }
   }
@@ -386,12 +369,17 @@ input:focus {
   }
 
   .teacher-select {
-    margin-top: auto;
+    display: flex;
+
+    select {
+      width: 50%;
+    }
 
     .create-schedule-btn {
       background-color: var(--Blue);
       padding: 1em;
       margin-left: 0.5em;
+      width: 50%;
     }
 
     .create-schedule-btn:active {
@@ -411,8 +399,8 @@ input:focus {
     display: none;
     position: fixed;
     background-color: white;
-    right: -265px;
-    top: 185px;
+    right: -282px;
+    top: 133px;
     transform: translate(-50%, -50%);
     z-index: 500;
     padding: 2em;
@@ -545,10 +533,6 @@ input:focus {
       flex-direction: column-reverse;
     }
 
-    .teacher-info {
-      font-size: 1.6rem;
-    }
-
     .teacher-select {
       display: flex;
       flex-direction: row;
@@ -559,7 +543,6 @@ input:focus {
       }
       select {
         font-size: 1.5rem;
-        width: 100%;
       }
     }
 
@@ -574,9 +557,35 @@ input:focus {
     .rbc-calendar {
       padding: 1em;
     }
+
+    .create-schedule {
+      right: -90px;
+      top: 286px;
+      padding: 1.5em;
+    }
+
+    .schedule-select-container {
+      flex-direction: column;
+    }
+
+    .input-container {
+      flex-direction: column;
+    }
+
+    .schedule-button-container {
+      flex-direction: column;
+    }
   }
 
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 320px) {
+    .create-schedule {
+      right: -80px;
+      top: 272px;
+      padding: 1em;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
     .rbc-toolbar {
       flex-direction: column;
     }
