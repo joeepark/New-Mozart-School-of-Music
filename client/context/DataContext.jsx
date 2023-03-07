@@ -205,7 +205,7 @@ export const DataProvider = ({ children }) => {
 
   const handleScheduleSubmit = async (event) => {
     event.preventDefault();
-    let popup = document.querySelector('.create-schedule');
+    let popup = document.querySelector('.schedule-popup');
     popup.style.display = 'none';
 
     const formData = new FormData(event.target);
