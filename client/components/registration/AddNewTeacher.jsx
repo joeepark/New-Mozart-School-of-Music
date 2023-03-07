@@ -10,7 +10,7 @@ function AddNewTeachers(props) {
   }
 
   return (
-    <section className="add-new">
+    <section className="registration">
       <h3>Registration Form</h3>
       <form
         method="post"
@@ -19,22 +19,22 @@ function AddNewTeachers(props) {
         onSubmit={handleTeacherSubmit}
         ref={formRef}
       >
-        <div className="input-row">
-          <div className="input">
+        <div className="registration__row">
+          <div className="registration__content">
             <label>{"Teacher's First Name"}</label>
             <input type="text" placeholder="Enter first name" name="first_name" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <label>{"Teacher's Last Name"}</label>
             <input type="text" placeholder="Enter last name" name="last_name" required></input>
           </div>
         </div>
-        <div className="input-row">
-          <div className="input">
+        <div className="registration__row">
+          <div className="registration__content">
             <label>Email Address</label>
             <input type="text" placeholder="Enter email address" name="email" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <label>Phone Number</label>
             <input
               type="tel"
@@ -46,12 +46,12 @@ function AddNewTeachers(props) {
             ></input>
           </div>
         </div>
-        <div className="input-row">
-          <div className="input">
+        <div className="registration__row">
+          <div className="registration__content">
             <label>Instruments</label>
             <input type="text" placeholder="Enter instruments" name="instruments" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <label>Studio Policies</label>
             <input
               type="text"
@@ -61,17 +61,17 @@ function AddNewTeachers(props) {
             ></input>
           </div>
         </div>
-        <div className="input-row">
-          <div className="input">
+        <div className="registration__row">
+          <div className="registration__content">
             <label>Zoom Link</label>
             <input type="url" placeholder="Enter zoom link" name="zoom_link"></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <label>Etc</label>
             <input type="text" placeholder="" name=""></input>
           </div>
         </div>
-        <div className="input-row">
+        <div className="registration__row">
           <button type="submit" className="submit-btn">
             Submit
           </button>

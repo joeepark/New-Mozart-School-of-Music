@@ -71,15 +71,15 @@ function CalendarTeacher() {
   };
 
   function handleClick() {
-    let popup = document.querySelector('.create-schedule');
+    let popup = document.querySelector('.schedule-popup');
     popup.style.display = 'block';
   }
 
   return (
     <section className="calendar">
-      <div className="calendar-header">
-      <div className="teacher-select">
-          <select className="teacher-select-btn" onChange={handleChange}>
+      <div className="calendar__header">
+        <div className="calendar__options">
+          <select onChange={handleChange}>
             <option>Pick a teacher:</option>
             {teachers.map((teacher) => {
               return (
@@ -89,18 +89,18 @@ function CalendarTeacher() {
               );
             })}
           </select>
-          <button onClick={handleClick} className="create-schedule-btn">
+          <button onClick={handleClick} className="calendar__schedule-btn">
             Create Schedule
           </button>
         </div>
         {selectedTeacher ? (
-          <div className="teacher-info">
+          <div className="calendar__info">
             <p>Instruments: {selectedTeacher.instruments}</p>
             <p>Studio Policies: {selectedTeacher.studio_policies}</p>
             <p>Zoom Link: {selectedTeacher.zoom_link}</p>
           </div>
         ) : (
-          <div className="teacher-info">
+          <div className="calendar__info">
             <p>Instruments: </p>
             <p>Studio Policies: </p>
             <p>Zoom Link: </p>

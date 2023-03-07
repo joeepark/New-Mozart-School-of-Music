@@ -10,7 +10,7 @@ function AddNewStudents() {
   }
 
   return (
-    <section className="add-new">
+    <section className="registration">
       <h3>Registration Form</h3>
       <form
         method="post"
@@ -19,19 +19,19 @@ function AddNewStudents() {
         onSubmit={handleStudentSubmit}
         ref={formRef}
       >
-        <div className="input-row">
-          <div className="input">
+        <div className="registration__row">
+          <div className="registration__content">
             <label>{"Student's First Name"}</label>
             <input type="text" placeholder="Enter first name" name="first_name" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <label>{"Student's Last Name"}</label>
             <input type="text" placeholder="Enter last name" name="last_name" required></input>
           </div>
         </div>
-        <div className="input-row">
-          <div className="input">
-            <label>{"Parents's First Name"}</label>
+        <div className="registration__row">
+          <div className="registration__content">
+            <label>{"Parent's First Name"}</label>
             <input
               type="text"
               placeholder="Enter first name"
@@ -39,8 +39,8 @@ function AddNewStudents() {
               required
             ></input>
           </div>
-          <div className="input">
-            <label>{"Parents's Last Name"}</label>
+          <div className="registration__content">
+            <label>{"Parent's Last Name"}</label>
             <input
               type="text"
               placeholder="Enter last name"
@@ -49,12 +49,12 @@ function AddNewStudents() {
             ></input>
           </div>
         </div>
-        <div className="input-row">
-          <div className="input">
+        <div className="registration__row">
+          <div className="registration__content">
             <label>Email Address</label>
             <input type="email" placeholder="Enter email address" name="email" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <label>Phone Number</label>
             <input
               type="tel"
@@ -66,8 +66,8 @@ function AddNewStudents() {
             ></input>
           </div>
         </div>
-        <div className="input-row address">
-          <div className="input">
+        <div className="registration__row registration__address">
+          <div className="registration__content">
             <label>Address</label>
             <input
               type="text"
@@ -77,13 +77,13 @@ function AddNewStudents() {
               required
             ></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <input type="text" placeholder="Enter city" name="city_address" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <input type="text" placeholder="Enter state" name="state_address" required></input>
           </div>
-          <div className="input">
+          <div className="registration__content">
             <input
               type="text"
               placeholder="Enter zip code"
@@ -95,7 +95,7 @@ function AddNewStudents() {
             ></input>
           </div>
         </div>
-        <div className="input-row">
+        <div className="registration__row">
           <button type="submit" className="submit-btn">
             Submit
           </button>

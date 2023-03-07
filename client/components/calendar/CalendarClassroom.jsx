@@ -71,21 +71,21 @@ function CalendarClassroom() {
   };
 
   function handleClick() {
-    let popup = document.querySelector('.create-schedule');
+    let popup = document.querySelector('.schedule-popup');
     popup.style.display = 'block';
   }
 
   return (
     <section className="calendar">
-      <div className="calendar-header">
-        <div className="teacher-select">
-          <select className="teacher-select-btn" onChange={handleChange}>
+      <div className="calendar__header">
+        <div className="calendar__options">
+          <select onChange={handleChange}>
             <option>Pick a room:</option>
             {classrooms?.map((classroom) => {
               return <option key={classroom.id}>{classroom.room_name}</option>;
             })}
           </select>
-          <button onClick={handleClick} className="create-schedule-btn">
+          <button onClick={handleClick} className="calendar__schedule-btn">
             Create Schedule
           </button>
         </div>

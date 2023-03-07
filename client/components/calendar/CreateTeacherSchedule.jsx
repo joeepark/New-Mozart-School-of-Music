@@ -10,9 +10,9 @@ function CreateSchedule({ selectedTeacher }) {
   }
 
   return (
-    <div className="create-schedule" ref={formRef}>
+    <div className="schedule-popup" ref={formRef}>
       <form method="post" action="/api/schedules" onSubmit={handleScheduleSubmit}>
-        <div className="schedule-select-container">
+        <div className="schedule-popup__selection">
           <input type="hidden" name="teacher_id" value={selectedTeacher.id} />
           <select name="student_id">
             <option>Pick a student:</option>
@@ -35,21 +35,21 @@ function CreateSchedule({ selectedTeacher }) {
             })}
           </select>
         </div>
-        <div className="input-container">
-          <div className="input-row">
+        <div className="schedule-popup__date">
+          <div>
             <label>Date: </label>
             <input type="date" name="date" required />
           </div>
-          <div className="input-row">
+          <div>
             <label>Start Time: </label>
             <input type="time" name="start_time" min="09:00" max="21:00" required />
           </div>
-          <div className="input-row">
+          <div>
             <label>End Time: </label>
             <input type="time" name="end_time" min="09:00" max="21:00" required />
           </div>
         </div>
-        <div className="schedule-button-container">
+        <div className="schedule-popup__buttons">
           <button type="submit" className="submit-btn">
             Submit
           </button>

@@ -15,7 +15,6 @@ function EditClassroomSchedule({ selectedEvent }) {
       window.removeEventListener('click', handleClickOutside);
     };
   }, []);
-  console.log(selectedEvent);
 
   let {
     start,

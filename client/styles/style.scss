@@ -86,6 +86,22 @@ input:focus {
   box-shadow: 0 1px 0 var(--Grey);
 }
 
+select {
+  border: none;
+  border-radius: 0.3em;
+  text-align: center;
+  padding: 1em;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  outline: none;
+  background-color: var(--Darkest-Blue);
+  color: var(--White);
+  font-weight: 700;
+}
+
+option:nth-child(1) {
+  display: none;
+}
+
 .submit-btn {
   background-color: var(--Blue);
 }
@@ -138,14 +154,14 @@ input:focus {
   max-width: 190px;
   text-align: center;
 
-  .nav-logo {
+  &__logo {
     display: flex;
     margin-top: 0.7em;
     align-items: center;
     gap: 0.2em;
   }
 
-  .nav-links {
+  &__links {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -161,7 +177,7 @@ input:focus {
       width: 100%;
     }
 
-    li:hover:not(.nav-dropdown) > a {
+    li:hover:not(.nav__dropdown) > a {
       background-color: var(--Light-Orange);
       color: var(--White);
     }
@@ -173,7 +189,7 @@ input:focus {
     }
   }
 
-  .nav-dropdown-menu {
+  &__list {
     min-width: max-content;
     overflow: hidden;
     max-height: 0;
@@ -184,9 +200,9 @@ input:focus {
     }
   }
 
-  .nav-dropdown:hover .nav-dropdown-menu,
-  .nav-dropdown:focus .nav-dropdown-menu,
-  .nav-dropdown:focus-within .nav-dropdown-menu {
+  &__dropdown:hover &__list,
+  &__dropdown:focus &__list,
+  &__dropdown:focus-within &__list {
     max-height: 200px;
   }
 
@@ -212,15 +228,15 @@ input:focus {
     align-items: center;
     z-index: 100;
 
-    .nav-logo {
+    &__logo {
       margin: 0;
     }
 
-    .nav-checkbox i {
+    &__checkbox .fas {
       display: block;
     }
 
-    .nav-links {
+    &__links {
       position: fixed;
       top: -100%;
       right: 0;
@@ -241,11 +257,11 @@ input:focus {
       }
     }
 
-    #nav-toggle:checked ~ .nav-checkbox i::before {
+    #nav__toggle:checked ~ &__checkbox i::before {
       content: '\f00d';
     }
 
-    #nav-toggle:checked ~ .nav-links {
+    #nav__toggle:checked ~ &__links {
       top: 5%;
     }
   }
@@ -255,7 +271,7 @@ input:focus {
 .home {
   margin: 1em 1em 1em 210px;
   display: flex;
-  gap: 2em;
+  gap: 1em;
   text-align: center;
 
   div {
@@ -276,15 +292,15 @@ input:focus {
   }
 }
 
-// Add New Styling
-.add-new {
+// Registration Styling
+.registration {
   margin: 1em 1em 1em 205px;
   padding: 2em;
   background-color: var(--White);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   overflow: auto;
 
-  .input-row {
+  &__row {
     display: flex;
     column-gap: 1em;
     width: 100%;
@@ -295,16 +311,7 @@ input:focus {
     }
   }
 
-  .address {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
-    .input:nth-child(2) {
-      margin-top: 2.35em;
-    }
-  }
-
-  .input {
+  &__content {
     display: flex;
     flex-direction: column;
     margin-top: 1em;
@@ -312,10 +319,20 @@ input:focus {
     gap: 0.3em;
   }
 
+  &__address {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    > :nth-child(2) {
+      margin-top: 2.35em;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     margin: 115px 1em 1.5em;
+    padding: 1em;
 
-    .input-row {
+    &__row {
       flex-direction: column;
 
       button {
@@ -323,10 +340,10 @@ input:focus {
       }
     }
 
-    .address {
+    &__address {
       grid-template-columns: repeat(1, 1fr);
 
-      .input:nth-child(2) {
+      > :nth-child(2) {
         margin-top: 1em;
       }
     }
@@ -341,127 +358,36 @@ input:focus {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   position: relative;
 
-  .calendar-header {
-    // display: flex;
-    // justify-content: space-between;
+  &__header {
     padding: 1em;
     background-color: var(--White);
     font-size: 2rem;
     gap: 1em;
   }
 
-  .teacher-info {
+  &__options {
+    display: flex;
+
+    select {
+      width: 50%;
+    }
+  }
+
+  &__schedule-btn {
+    background-color: var(--Blue);
+    padding: 1em;
+    margin-left: 0.5em;
+    width: 50%;
+  }
+
+  &__schedule-btn:active {
+    background-color: var(--Yellow);
+  }
+
+  &__info {
     p {
       margin-top: 0.5em;
     }
-  }
-
-  select {
-    border: none;
-    border-radius: 0.3em;
-    text-align: center;
-    padding: 1em;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    outline: none;
-    background-color: var(--Darkest-Blue);
-    color: var(--White);
-    font-weight: 700;
-  }
-
-  .teacher-select {
-    display: flex;
-
-    select {
-      width: 50%;
-    }
-
-    .create-schedule-btn {
-      background-color: var(--Blue);
-      padding: 1em;
-      margin-left: 0.5em;
-      width: 50%;
-    }
-
-    .create-schedule-btn:active {
-      background-color: var(--Yellow);
-    }
-
-    option {
-      font-weight: 700;
-    }
-
-    option:nth-child(1) {
-      display: none;
-    }
-  }
-
-  .create-schedule {
-    display: none;
-    position: fixed;
-    background-color: white;
-    right: -282px;
-    top: 133px;
-    transform: translate(-50%, -50%);
-    z-index: 500;
-    padding: 2em;
-    border: 1px solid var(--Light-Grey);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5em;
-    }
-
-    .input-container {
-      display: flex;
-      gap: 1em;
-    }
-
-    input {
-      padding: 0.5em;
-    }
-  }
-
-  .schedule-select-container {
-    display: flex;
-    gap: 1em;
-
-    select {
-      width: 100%;
-      text-align: center;
-      background-color: var(--Dark-Blue);
-      padding: 0.5em;
-    }
-
-    option:nth-child(1) {
-      display: none;
-    }
-  }
-
-  .schedule-button-container {
-    display: flex;
-    gap: 1em;
-
-    button {
-      width: 100%;
-      box-shadow: none;
-      padding: 0.5em;
-    }
-  }
-
-  .schedule-edit {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    background-color: white;
-    right: 30%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 500;
-    padding: 2em;
-    border: 1px solid var(--Light-Grey);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   }
 
   .rbc-btn-group > button {
@@ -529,23 +455,6 @@ input:focus {
   @media screen and (max-width: 768px) {
     margin: 115px 1em 1.5em;
 
-    .teacher {
-      flex-direction: column-reverse;
-    }
-
-    .teacher-select {
-      display: flex;
-      flex-direction: row;
-
-      button {
-        font-size: 1.5rem;
-        width: 100%;
-      }
-      select {
-        font-size: 1.5rem;
-      }
-    }
-
     .rbc-toolbar-label {
       margin: 0.5em 0;
     }
@@ -557,32 +466,6 @@ input:focus {
     .rbc-calendar {
       padding: 1em;
     }
-
-    .create-schedule {
-      right: -90px;
-      top: 286px;
-      padding: 1.5em;
-    }
-
-    .schedule-select-container {
-      flex-direction: column;
-    }
-
-    .input-container {
-      flex-direction: column;
-    }
-
-    .schedule-button-container {
-      flex-direction: column;
-    }
-  }
-
-  @media screen and (max-width: 320px) {
-    .create-schedule {
-      right: -80px;
-      top: 272px;
-      padding: 1em;
-    }
   }
 
   @media screen and (max-width: 900px) {
@@ -592,8 +475,97 @@ input:focus {
   }
 }
 
+// Schedule Popup Styling
+.schedule-popup {
+  display: none;
+  position: fixed;
+  background-color: var(--White);
+  right: -282px;
+  top: 133px;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  padding: 2em;
+  border: 1px solid var(--Light-Grey);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  input {
+    padding: 0.5em;
+  }
+
+  &__selection {
+    display: flex;
+    gap: 1em;
+
+    select {
+      width: 100%;
+      background-color: var(--Dark-Blue);
+      padding: 0.5em;
+    }
+  }
+
+  &__date {
+    display: flex;
+    gap: 1em;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1em;
+
+    button {
+      width: 100%;
+      box-shadow: none;
+      padding: 0.5em;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    right: -90px;
+    top: 286px;
+    padding: 1.5em;
+
+    &__selection {
+      flex-direction: column;
+    }
+
+    &__date {
+      flex-direction: column;
+    }
+
+    &__buttons {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    right: -80px;
+    top: 272px;
+    padding: 1em;
+  }
+}
+
+.schedule-edit {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  background-color: white;
+  right: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  padding: 2em;
+  border: 1px solid var(--Light-Grey);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
 // Table Data Styling
-.data-table {
+.data {
   table {
     thead,
     tbody,
@@ -617,14 +589,13 @@ input:focus {
     tbody tr:hover td {
       background-color: var(--Light-Grey);
     }
-
-    .edit-buttons img:nth-child(1) {
-      margin-right: 0.4em;
-    }
+  }
+  &__edit-buttons img:nth-child(1) {
+    margin-right: 0.4em;
   }
 }
 
-.data-table-teachers {
+.data__teachers {
   margin: 1em 1em 1em 205px;
   background-color: var(--White);
   text-align: center;
@@ -653,7 +624,7 @@ input:focus {
   }
 }
 
-.data-table-students {
+.data__students {
   margin: 1em 1em 1em 205px;
   background-color: var(--White);
   text-align: center;

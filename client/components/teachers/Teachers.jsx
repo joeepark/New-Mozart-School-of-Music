@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import DataContext from '/client/context/DataContext';
-import Loading from '/client/components/layout/Loading';
 import remove from '/client/assets/delete.png';
 import edit from '/client/assets/edit.png';
 import Image from 'next/image';
@@ -9,8 +8,8 @@ function Teachers() {
   const { teachers } = useContext(DataContext);
 
   return (
-    <section className="data-table-teachers data-table">
-      {teachers ? (
+    <section className="data__teachers data">
+      {teachers && (
         <table>
           <thead>
             <tr>
@@ -28,8 +27,6 @@ function Teachers() {
             {teachers && teachers.map((teacher, index) => <Row teacher={teacher} key={index} />)}
           </tbody>
         </table>
-      ) : (
-        <Loading />
       )}
     </section>
   );
@@ -65,7 +62,7 @@ function Row({ teacher }) {
       <td>{instruments}</td>
       <td>{studio_policies}</td>
       <td>{zoom_link}</td>
-      <td className="edit-buttons">
+      <td className="data__edit-buttons">
         <Image src={edit} alt="edit button" height={18}></Image>
         <Image src={remove} alt="delete button" height={18} onClick={handleDeleteClick}></Image>
       </td>

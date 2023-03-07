@@ -17,25 +17,25 @@ function Nav() {
   return (
     <nav className="nav">
       <Link href="/">
-        <div className="nav-logo">
+        <div className="nav__logo">
           <Image src={logo1} alt="logo" height={60} />
           <Image src={logo2} alt="logo" height={45} />
         </div>
       </Link>
-      <input type="checkbox" id="nav-toggle" checked={open} onChange={() => setOpen(!open)} />
-      <label htmlFor="nav-toggle" className="nav-checkbox">
-        <i className="fas fa-bars"></i>
+      <input type="checkbox" id="nav__toggle" checked={open} onChange={() => setOpen(!open)} />
+      <label htmlFor="nav__toggle" className="nav__checkbox">
+        <i className="fas fa-bars" />
       </label>
-      <div className="nav-links">
+      <div className="nav__links">
         <ul>
           <li>
             <Link href="/" onClick={handleClick} className={activeLink === '/' ? 'active' : ''}>
               Home
             </Link>
           </li>
-          <li className="nav-dropdown">
+          <li className="nav__dropdown">
             Registration <Image src={dropdown} alt="dropdown icon" height={20} />
-            <ul className="nav-dropdown-menu">
+            <ul className="nav__list">
               <li>
                 <Link
                   href="/add-new-student"
@@ -56,9 +56,9 @@ function Nav() {
               </li>
             </ul>
           </li>
-          <li className="nav-dropdown">
+          <li className="nav__dropdown">
             Calendar <Image src={dropdown} alt="dropdown icon" height={20} />
-            <ul className="nav-dropdown-menu">
+            <ul className="nav__list">
               <li>
                 <Link
                   href="/calendar-teacher"
